@@ -1,11 +1,11 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\rd.cpp",
+        "Source": "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\source\\rd\\rd.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\rd.h",
+            "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+            "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\source\\rd\\rd.h",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\logging\\logmacros.h",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\containers\\unrealstring.h",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\containers\\unrealstringincludes.h.inl",

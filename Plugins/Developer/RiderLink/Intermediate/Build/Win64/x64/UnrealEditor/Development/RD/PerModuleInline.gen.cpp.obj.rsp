@@ -1,9 +1,9 @@
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp"
-/FI"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Definitions.h"
-/Fo"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.obj"
-/experimental:log "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.sarif"
-/sourceDependencies "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.dep.json"
-@"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\RD.Shared.rsp"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp"
+/FI"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Definitions.h"
+/Fo"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.obj"
+/experimental:log "D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.sarif"
+/sourceDependencies "D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\PerModuleInline.gen.cpp.dep.json"
+@"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\RD.Shared.rsp"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo

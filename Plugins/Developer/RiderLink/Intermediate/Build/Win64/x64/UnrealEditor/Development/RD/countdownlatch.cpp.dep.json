@@ -1,10 +1,10 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.cpp",
+        "Source": "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+            "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\chrono",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\yvals_core.h",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\vcruntime.h",
@@ -94,7 +94,7 @@
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\xthreads.h",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\__msvc_threads_core.hpp",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\xfilesystem_abi.h",
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.hpp",
+            "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.hpp",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\cinttypes",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.22621.0\\ucrt\\inttypes.h",
             "c:\\program files (x86)\\microsoft visual studio\\2022\\buildtools\\vc\\tools\\msvc\\14.43.34808\\include\\mutex",

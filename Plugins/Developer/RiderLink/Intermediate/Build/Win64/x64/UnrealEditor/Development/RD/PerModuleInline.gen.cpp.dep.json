@@ -1,10 +1,10 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\permoduleinline.gen.cpp",
+        "Source": "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\permoduleinline.gen.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
+            "d:\\ueprojects\\auraold\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\rd\\definitions.h",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\coreglobals.h",
             "d:\\program files\\epic games\\ue_5.5\\engine\\source\\runtime\\core\\public\\containers\\unrealstring.h",

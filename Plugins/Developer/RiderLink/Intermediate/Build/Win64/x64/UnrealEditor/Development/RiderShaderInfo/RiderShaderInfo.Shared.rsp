@@ -9,7 +9,7 @@
 /I "Runtime\RenderCore\Internal"
 /I "Runtime\RHI\Public"
 /I "Runtime\OpenGLDrv\Public"
-/I "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Source"
+/I "D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Source"
 /external:W0
 /external:I "ThirdParty\GuidelinesSupportLibrary\GSL-1144\include"
 /external:I "ThirdParty\RapidJSON\1.1.0"

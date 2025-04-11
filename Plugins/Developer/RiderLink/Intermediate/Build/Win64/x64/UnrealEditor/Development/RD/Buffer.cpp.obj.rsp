@@ -1,9 +1,9 @@
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Source\RD\src\rd_framework_cpp\src\main\protocol\Buffer.cpp"
-/FI"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Definitions.h"
-/Fo"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.obj"
-/experimental:log "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.sarif"
-/sourceDependencies "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.dep.json"
-@"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\RD.Shared.rsp"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Source\RD\src\rd_framework_cpp\src\main\protocol\Buffer.cpp"
+/FI"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Definitions.h"
+/Fo"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.obj"
+/experimental:log "D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.sarif"
+/sourceDependencies "D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\Buffer.cpp.dep.json"
+@"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\RD.Shared.rsp"
 /d2ssa-cfg-question-
 /Zc:inline
 /nologo

@@ -36,13 +36,12 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 /NOIMPLIB
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\RiderLC.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Default.rc2.res"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Module.RiderLC.cpp.obj"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLC\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderLink\UnrealEditor-RiderLink.lib"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RD\UnrealEditor-RD.lib"
 "delayimp.lib"
 "wininet.lib"
 "rpcrt4.lib"
@@ -68,6 +67,6 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.dll"
-/PDB:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.pdb"
+/OUT:"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.dll"
+/PDB:"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderLC.pdb"
 /ignore:4078

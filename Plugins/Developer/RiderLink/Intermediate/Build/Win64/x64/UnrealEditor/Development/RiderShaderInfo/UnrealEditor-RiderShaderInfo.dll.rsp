@@ -37,9 +37,8 @@
 /FUNCTIONPADMIN:6
 /NOIMPLIB
 /NATVIS:"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RenderCore\RenderCore.natvis"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\RiderShaderInfo.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Default.rc2.res"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
+"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\Development\RiderShaderInfo\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Projects\UnrealEditor-Projects.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RenderCore\UnrealEditor-RenderCore.lib"
@@ -68,6 +67,6 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderShaderInfo.dll"
-/PDB:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderShaderInfo.pdb"
+/OUT:"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderShaderInfo.dll"
+/PDB:"D:\UEProjects\Auraold\Plugins\Developer\RiderLink\Binaries\Win64\UnrealEditor-RiderShaderInfo.pdb"
 /ignore:4078

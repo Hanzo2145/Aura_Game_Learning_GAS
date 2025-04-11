@@ -13,6 +13,11 @@ AAruraCharacterBase::AAruraCharacterBase()
 
 }
 
+UAbilitySystemComponent* AAruraCharacterBase::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void AAruraCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
