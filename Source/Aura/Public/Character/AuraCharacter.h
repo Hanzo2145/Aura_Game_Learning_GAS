@@ -6,6 +6,7 @@
 #include "Character/AruraCharacterBase.h"
 #include "AuraCharacter.generated.h"
 
+class AAuraHUD;
 class AAuraPlayerState;
 /**
  * 

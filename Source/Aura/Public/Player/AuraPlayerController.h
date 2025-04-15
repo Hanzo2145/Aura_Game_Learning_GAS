@@ -7,6 +7,7 @@
 #include "AuraPlayerController.generated.h"
 
 
+class AAuraHUD;
 //Declrations
 class UInputMappingContext;
 class UInputAction;
@@ -47,6 +48,5 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 	void Move(const FInputActionValue& InputActionValue);
-
 	
 };
