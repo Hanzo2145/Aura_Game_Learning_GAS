@@ -24,3 +24,7 @@ void AAruraCharacterBase::BeginPlay()
 	
 }
 
+void AAruraCharacterBase::InitAbilityActorInfo()
+{
+}
+

@@ -21,5 +21,9 @@ public:
 	virtual void UnHighLightActor() override;
 	/* end Enemy Interface */
 protected:
+	/*
+	 * Functions Declarations
+	 */
 	virtual  void BeginPlay() override;
+	virtual void InitAbilityActorInfo() override;
 };
