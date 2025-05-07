@@ -3,6 +3,8 @@
 
 #include "Character/AruraCharacterBase.h"
 
+#include "AbilitySystemComponent.h"
+
 AAruraCharacterBase::AAruraCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -26,5 +28,20 @@ void AAruraCharacterBase::BeginPlay()
 
 void AAruraCharacterBase::InitAbilityActorInfo()
 {
+}
+
+void AAruraCharacterBase::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const
+{
+	check(IsValid(GetAbilitySystemComponent()));
+	check(GameplayEffectClass);
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(GameplayEffectClass, Level, ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
+}
+
+void AAruraCharacterBase::InitializeDefaultAttribute() const
+{
+	ApplyEffectToSelf(DefaultPrimaryAttribute, 1.f);
+	ApplyEffectToSelf(DefaultSecondaryAttribute, 1.f);
 }
 
