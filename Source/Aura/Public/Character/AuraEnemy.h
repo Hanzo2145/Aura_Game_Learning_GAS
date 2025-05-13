@@ -26,4 +26,21 @@ protected:
 	 */
 	virtual  void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
+
+	/* Combat Interface*/
+
+	virtual int32 GetPlayerLevel() override;
+	
+	/* Combat Interface*/
+
+
+	/*
+	 * Variables Declarations 
+	 */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	int32 Level = 1;
+
+private:
+
+	
 };
