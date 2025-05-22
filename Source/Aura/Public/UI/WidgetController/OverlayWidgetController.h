@@ -45,7 +45,7 @@ public:
 	 * Function Declarations
 	 */
 	virtual void BroadcastInitialValues() override;
-	virtual void BindCallbacksToDependancies() override;
+	virtual void BindCallbacksToDeoendencies() override;
 
 	/*
 	 * Variables Declarations
@@ -67,7 +67,7 @@ public:
 
 protected:
 	/*
-	 * Variables Declarations
+	 * Variables Declarations 
 	 */
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Widget Data")
 	TObjectPtr<UDataTable> MessageWidgetDataTable;

@@ -58,8 +58,9 @@ public:
 	// this function is used to set the values of the 4 variables that we created in the constructor
 	UFUNCTION(BlueprintCallable)
 	void SetWidgetControllerParams(const FWidgetControllerParams& WCParams);
+	UFUNCTION(BlueprintCallable)
 	virtual void BroadcastInitialValues();
-	virtual void BindCallbacksToDependancies();
+	virtual void BindCallbacksToDeoendencies();
 protected:
 
 	/*Variables Declarations*/

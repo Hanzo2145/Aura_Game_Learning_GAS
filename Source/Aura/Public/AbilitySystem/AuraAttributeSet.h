@@ -47,6 +47,12 @@ struct FEffectProperties
 	UPROPERTY()
 	TObjectPtr<ACharacter> TargetCharacter = nullptr;
 };
+
+
+// typedef is specific tp the FgameplayAttribute() signature, but TStaticFuncPtr is generic to any function signature chosen
+//typedef TBaseStaticDelegateInstance<FGameplayAttribute(), FDefaultDelegateUserPolicy>::FFuncPtr FAttributeFuncPtr;
+template<class t>
+using TStaticFuncPtr = typename  TBaseStaticDelegateInstance<t, FDefaultDelegateUserPolicy>::FFuncPtr;
 /**
  * 
  */
@@ -64,6 +70,8 @@ public:
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
+	
 	//To replicate a variabel we mark it as ReplicatedUsing and we assign a function to it
 	/*
 	 * Vital Attributes
