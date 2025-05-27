@@ -29,7 +29,7 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 	Super::PossessedBy(NewController);
 	// Init Ability Actor Info for the Server
 	InitAbilityActorInfo();
-	UWorld* World = GetWorld();
+	AddCharacterAbilities();
 }
 
 void AAuraCharacter::OnRep_PlayerState()

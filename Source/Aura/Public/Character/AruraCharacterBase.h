@@ -9,6 +9,7 @@
 #include "AruraCharacterBase.generated.h"
 
 
+class UGameplayAbility;
 class UGameplayEffect;
 class UAttributeSet;
 class UAbilitySystemComponent;
@@ -48,5 +49,15 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
 	TSubclassOf<UGameplayEffect> DefaultVitalAttribute;
-	
+
+	void AddCharacterAbilities();
+
+private:
+
+	/*
+	 * Variables Declaration
+	 */
+
+	UPROPERTY(EditAnywhere, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
 };

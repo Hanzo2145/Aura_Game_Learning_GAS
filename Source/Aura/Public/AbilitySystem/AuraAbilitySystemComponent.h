@@ -16,9 +16,20 @@ class AURA_API UAuraAbilitySystemComponent : public UAbilitySystemComponent
 {
 	GENERATED_BODY()
 public:
+	/*
+	 * Functions Declaration
+	 */
 	void AbilityActorInfoSet();
+	void AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities);
+	void AbilityInputTagHeld(const FGameplayTag& InputTag);
+	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 
+	/*
+	 * Variables Declarations
+	 */
 	FEffectAssetsTags EffectAssetsTags;
+
+	
 protected:
 	void EffectAppllied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle);
 };

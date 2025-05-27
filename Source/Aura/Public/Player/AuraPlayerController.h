@@ -3,16 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
 
 
-class AAuraHUD;
 //Declrations
+class UAuraInputConfig;
+class AAuraHUD;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 class IEnemyInterface;
+class UAuraAbilitySystemComponent;
+
 /**
  * 
  */
@@ -33,11 +37,15 @@ private:
 	 * Functions Declarations
 	 */
 	void CursorTrace();
+	UAuraAbilitySystemComponent* GetASC();
 	/**
 	 * Variables
 	 */
 	TScriptInterface<IEnemyInterface> LastActor;
 	TScriptInterface<IEnemyInterface> ThisActor;
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+	
 	
 	/*
 	 * Input Action and Mapping
@@ -48,5 +56,13 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 	void Move(const FInputActionValue& InputActionValue);
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UAuraInputConfig> InputConfig;
+
+	// the three function that we need to bind to
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
 	
 };
