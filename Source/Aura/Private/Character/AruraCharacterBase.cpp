@@ -48,6 +48,12 @@ void AAruraCharacterBase::InitializeDefaultAttribute() const
 	ApplyEffectToSelf(DefaultVitalAttribute, 1.f);
 }
 
+FVector AAruraCharacterBase::GetCombatSocketLocation()
+{
+	check(Weapon);
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
 void AAruraCharacterBase::AddCharacterAbilities()
 {
 	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponent);
