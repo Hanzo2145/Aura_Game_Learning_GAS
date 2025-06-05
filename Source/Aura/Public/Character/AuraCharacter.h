@@ -6,6 +6,7 @@
 #include "Character/AruraCharacterBase.h"
 #include "AuraCharacter.generated.h"
 
+class USpringArmComponent;
 class AAuraHUD;
 class AAuraPlayerState;
 /**
@@ -22,8 +23,15 @@ public:
 
 	/* Combat Interface*/
 	virtual int32 GetPlayerLevel() override;
+	virtual void SetSpringArmlength(float SpringArmlength) override;
 	/* /Combat Interface*/
 
 private:
 	virtual void InitAbilityActorInfo() override;
+
+	/*
+	 * Variables Declarations
+	 */
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArm;
 };

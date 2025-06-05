@@ -8,6 +8,7 @@
 
 class AAuraProjectile;
 class UAbilityTask_PlayMontageAndWait;
+class UGameplayEffect;
 /**
  * 
  */
@@ -24,5 +25,9 @@ protected:
 	TSubclassOf<AAuraProjectile> ProjectileClass;
 
 	UFUNCTION(BlueprintCallable, Category = "Projectile")
-	void SpawnProjectile();
+	void SpawnProjectile(const FVector& ProjectileTargetLocation);
+
+	//This is the Gameplay Effect that we are going to use to Deal damage the Characters for now
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
+	TSubclassOf<UGameplayEffect> DamageEffectClass;
 };

@@ -24,12 +24,14 @@ public:
 	AAruraCharacterBase();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
+	
+	
 protected:
 	/*Functions Declarations*/
 	virtual void BeginPlay() override;
 	virtual void InitAbilityActorInfo();
 	void ApplyEffectToSelf(TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const;
-	void InitializeDefaultAttribute() const;
+	virtual void InitializeDefaultAttributes() const;
 
 	/*Variables Declarations*/
 	UPROPERTY(EditAnywhere, Category = "Combat")
@@ -65,4 +67,5 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Abilities")
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+	
 };

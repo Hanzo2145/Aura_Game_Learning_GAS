@@ -4,9 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Character/AruraCharacterBase.h"
+#include "UI/WidgetController/OverlayWidgetController.h"
+#include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/EnemyInterface.h"
 #include "AuraEnemy.generated.h"
 
+class UWidgetComponent;
 /**
  * 
  */
@@ -20,12 +23,22 @@ public:
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
 	/* end Enemy Interface */
+
+	/*
+	 * Variables Declarations 
+	 */
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnHealthChanged;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAttributeChangedSignature OnMaxHealthChanged;
 protected:
 	/*
 	 * Functions Declarations
 	 */
 	virtual  void BeginPlay() override;
 	virtual void InitAbilityActorInfo() override;
+	virtual void InitializeDefaultAttributes() const override;
 
 	/* Combat Interface*/
 
@@ -39,6 +52,12 @@ protected:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	ECharacterClass CharacterClass = ECharacterClass::None;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
+	TObjectPtr<UWidgetComponent> HealthBar;
 
 private:
 

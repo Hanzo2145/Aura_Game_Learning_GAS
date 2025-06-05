@@ -5,15 +5,22 @@
 
 #include "AbilitySystemComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Aura/Aura.h"
+#include "Components/CapsuleComponent.h"
 
 AAruraCharacterBase::AAruraCharacterBase()
 {
 	PrimaryActorTick.bCanEverTick = false;
 
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetCapsuleComponent()->SetGenerateOverlapEvents(false);
+	GetMesh()->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+	GetMesh()->SetCollisionResponseToChannel(ECC_PROJECTILE, ECR_Overlap);
+	GetMesh()->SetGenerateOverlapEvents(true);
+
 	Weapon = CreateDefaultSubobject<USkeletalMeshComponent>("Weapon Mesh");
 	Weapon->SetupAttachment(GetMesh(), FName("WeaponHandSocket"));
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 }
 
 UAbilitySystemComponent* AAruraCharacterBase::GetAbilitySystemComponent() const
@@ -41,7 +48,7 @@ void AAruraCharacterBase::ApplyEffectToSelf(TSubclassOf<UGameplayEffect> Gamepla
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToTarget(*SpecHandle.Data.Get(), GetAbilitySystemComponent());
 }
 
-void AAruraCharacterBase::InitializeDefaultAttribute() const
+void AAruraCharacterBase::InitializeDefaultAttributes() const
 {
 	ApplyEffectToSelf(DefaultPrimaryAttribute, 1.f);
 	ApplyEffectToSelf(DefaultSecondaryAttribute, 1.f);
