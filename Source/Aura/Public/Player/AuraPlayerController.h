@@ -8,6 +8,7 @@
 #include "AuraPlayerController.generated.h"
 
 
+class UDamageTextComponent;
 //Declrations
 class UAuraInputConfig;
 class AAuraHUD;
@@ -26,8 +27,15 @@ class AURA_API AAuraPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 public:
+	/*
+	 * Functions Declarations
+	 */
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
+
+	UFUNCTION(Client, Reliable)
+	void ShowDamageNumber(float DamageAmount, ACharacter* TargetCharacter);
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -47,6 +55,8 @@ private:
 	FHitResult CursorHit;
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<UDamageTextComponent> DamageTextComponentClass;
 	
 	
 	/*
@@ -58,11 +68,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 	void Move(const FInputActionValue& InputActionValue);
-
-	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputAction> LookAction;
-	void Look(const FInputActionValue& InputActionValue);
-
+	
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> ZoomAction;
 	void Zoom(const FInputActionValue& InputActionValue);

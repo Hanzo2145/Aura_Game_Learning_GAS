@@ -29,5 +29,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static void InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC);
 
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
+	static void GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
+	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
 	
 };

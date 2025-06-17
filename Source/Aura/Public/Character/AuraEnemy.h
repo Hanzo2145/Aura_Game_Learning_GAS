@@ -23,7 +23,14 @@ public:
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
 	/* end Enemy Interface */
+	
+	/*
+	 * Functions Declarations
+	 */
+	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
+	virtual void Die() override;
 
+	
 	/*
 	 * Variables Declarations 
 	 */
@@ -32,6 +39,15 @@ public:
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnMaxHealthChanged;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	bool bHitReacting = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Combat")
+	float BaseWalkSpeed = 250.f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	float LifeSpan = 5.f;
 protected:
 	/*
 	 * Functions Declarations

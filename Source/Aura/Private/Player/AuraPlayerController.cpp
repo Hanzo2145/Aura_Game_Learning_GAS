@@ -10,6 +10,8 @@
 #include "Input/AuraInputComponent.h"
 #include "Interaction/CombatInterface.h"
 #include "Interaction/EnemyInterface.h"
+#include "GameFramework/Character.h"
+#include "UI/Widget/DamageTextComponent.h"
 
 AAuraPlayerController::AAuraPlayerController()
 {
@@ -20,6 +22,18 @@ void AAuraPlayerController::PlayerTick(float DeltaTime)
 {
 	Super::PlayerTick(DeltaTime);
 	CursorTrace();
+}
+
+void AAuraPlayerController::ShowDamageNumber_Implementation(const float DamageAmount, ACharacter* TargetCharacter)
+{
+	if (IsValid(TargetCharacter) && DamageTextComponentClass)
+	{
+		UDamageTextComponent* DamageText = NewObject<UDamageTextComponent>(TargetCharacter, DamageTextComponentClass);
+		DamageText->RegisterComponent();
+		DamageText->AttachToComponent(TargetCharacter->GetRootComponent(), FAttachmentTransformRules::KeepRelativeTransform);
+		DamageText->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
+		DamageText->SetDamageText(DamageAmount);
+	}
 }
 
 void AAuraPlayerController::BeginPlay()
@@ -49,7 +63,6 @@ void AAuraPlayerController::SetupInputComponent()
 
 	UAuraInputComponent* AuraInputComponent = CastChecked<UAuraInputComponent>(InputComponent);
 	AuraInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
-	AuraInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Look);
 	AuraInputComponent->BindAction(ZoomAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Zoom);
 	AuraInputComponent->BindAbilityAction(InputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
 }
@@ -107,17 +120,6 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue)
 	}
 }
 
-void AAuraPlayerController::Look(const FInputActionValue& InputActionValue)
-{
-	const FVector2D LookAxisValue = InputActionValue.Get<FVector2D>();
-
-	if (!LookAxisValue.IsNearlyZero()) // Prevent unnecessary calculations
-	{
-		AddYawInput(LookAxisValue.X);  // Using AddControllerYawInput we can now Turn Left/Right
-		AddPitchInput(LookAxisValue.Y); // Using AddControllerYawInput we can now Turn up/down
-	}
-}
-
 void AAuraPlayerController::Zoom(const FInputActionValue& InputActionValue)
 {
 	ICombatInterface* CombatInterface = Cast<ICombatInterface>(GetPawn<APawn>());
@@ -131,20 +133,10 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_RMB))
-	{
-		if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
-		return;
-	}
-	
 	if (GetASC()) GetASC()->AbilityInputTagReleased(InputTag);
-	
 }
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	if (!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_RMB))
-	{
-		if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
-	}
+	if (GetASC()) GetASC()->AbilityInputTagHeld(InputTag);
 }

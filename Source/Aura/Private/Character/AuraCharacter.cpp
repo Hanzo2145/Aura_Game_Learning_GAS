@@ -4,6 +4,7 @@
 #include "Character/AuraCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "BlendSpaceAnalysis.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Chaos/SoftsSpring.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -22,10 +23,7 @@ AAuraCharacter::AAuraCharacter()
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArm->SetupAttachment(GetRootComponent());
-
-	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw = false;
-	bUseControllerRotationRoll = false;
+	SpringArm->SetRelativeRotation(FRotator(-40.f, 0.f, 0.0f));
 	
 }
 

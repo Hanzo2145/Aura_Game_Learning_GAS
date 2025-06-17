@@ -6,6 +6,8 @@
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
+
+class UAnimMontage;
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI, BlueprintType)
 class UCombatInterface : public UInterface
@@ -29,4 +31,9 @@ public:
 	void UpdatingFacingTarget(const FVector& target);
 
 	virtual void SetSpringArmlength(float SpringArmlength);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	UAnimMontage* GetHitReactMontage();
+
+	virtual void Die() = 0;
 };
