@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/ExecCalc/ExecCalec_Damage.h"
 #include "AbilitySystemComponent.h"
+#include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibaray.h"
 #include "AbilitySystem/AuraAttributeSet.h"
@@ -75,9 +76,13 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	TargetBlockChance = FMath::Max<float>(TargetBlockChance, 0.f);
 	
 	const float RandomBlockChance = FMath::RandRange(1.f, 100.f);
-	// if block, Halve the damage.
-	if (RandomBlockChance <= TargetBlockChance) Damage *= 0.5f;
+	const bool bBlocked = FMath::RandRange(1, 100) < TargetBlockChance;
 
+	// if block, Halve the damage.
+	Damage = bBlocked ? Damage / 2.f : Damage;
+
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
+	UAuraAbilitySystemLibaray::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	
 	float TargetArmor = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, TargetArmor);
@@ -96,6 +101,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 
 	const FRealCurve* EffectiveArmorCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("EffectiveArmor"), FString());
 	const float EffectiveArmorCoefficient = EffectiveArmorCurve->Eval(TargetCombatInterface->GetPlayerLevel());
+
 	// Armor Ignores a percentage of incoming damage
 	Damage *= ( 100.f - EffectiveArmor * EffectiveArmorCoefficient ) / 100.f;
 	
@@ -110,9 +116,6 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	float TargetCriticalHitResistance = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().CriticalHitResistanceDef, EvaluationParameters, TargetCriticalHitResistance);
 	TargetCriticalHitResistance = FMath::Max<float>(TargetCriticalHitResistance, 0.f);
-
-	//get a random number to compare it to the Effective Critical Hit Chance
-	const float RandomCriticalHitChance = FMath::RandRange(0.f, 100.f);
 	
 	//we are creating the coefficient for the Critical hit Resistance
 	const FRealCurve* CriticalHitResistanceCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("CriticalHitResistance"), FString());
@@ -120,13 +123,11 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	
 	// Subtracting the Source Tagret Critical Hit Resistance from the Source Critical Hit Chance and saving the result to use later
 	const float EffectiveCriticalHitChance = SourceCriticalHitChance - TargetCriticalHitResistance * CriticalHitResistanceCoefficient;
+	const bool bCriticalHit = FMath::RandRange(1, 100) < EffectiveCriticalHitChance;
+	UAuraAbilitySystemLibaray::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
 	
-	//Check to see if we have a critical hit landed
-	if (RandomCriticalHitChance <= EffectiveCriticalHitChance)
-	{
-		// if true we double the damage and add the value of Critical hit Damage
-		Damage = (Damage * 2.f) + SourceCriticalHitDamage;
-	}
+	// Double Damage plus a bonus if critical hit
+	Damage = bCriticalHit ? 2.f * Damage + SourceCriticalHitDamage : Damage;
 	
 	const FGameplayModifierEvaluatedData EvaluatedData(UAuraAttributeSet::GetIncomingDamageAttribute(), EGameplayModOp::Additive, Damage);
 	OutExecutionOutput.AddOutputModifier(EvaluatedData);

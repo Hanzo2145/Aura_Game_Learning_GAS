@@ -19,5 +19,5 @@ public:
 	 * Function Declarations
 	 */
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Combat")
-	void SetDamageText(float Damage);
+	void SetDamageText(float Damage, bool blockedHit, bool bCriticalHit);
 };

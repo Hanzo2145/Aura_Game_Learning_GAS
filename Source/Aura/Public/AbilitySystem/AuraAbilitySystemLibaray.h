@@ -34,5 +34,16 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
-	
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static bool IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static bool IsCriticalHit(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetIsBlockedHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool InIsBlockedHit);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetIsCriticalHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool InIsCriticalHit);
 };
