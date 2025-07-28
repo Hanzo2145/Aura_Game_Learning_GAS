@@ -9,7 +9,9 @@
 #include "Interaction/EnemyInterface.h"
 #include "AuraEnemy.generated.h"
 
+class AAuraAIController;
 class UWidgetComponent;
+class UBehaviorTree;
 /**
  * 
  */
@@ -22,6 +24,8 @@ public:
 	/* Enemy Interface */
 	virtual void HighLightActor() override;
 	virtual void UnHighLightActor() override;
+	virtual void SetCombatTarget_Implementation(AActor* InCombatTarget) override;
+	virtual AActor* GetCombatTarget_Implementation() const override;
 	/* end Enemy Interface */
 	
 	/*
@@ -29,6 +33,7 @@ public:
 	 */
 	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
 	virtual void Die() override;
+	virtual void PossessedBy(AController* NewController) override;
 
 	
 	/*
@@ -48,6 +53,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
 	float LifeSpan = 5.f;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Combat")
+	TObjectPtr<AActor> CombatTarget;
 protected:
 	/*
 	 * Functions Declarations
@@ -75,7 +83,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	TObjectPtr<UWidgetComponent> HealthBar;
 
-private:
+	UPROPERTY(EditDefaultsOnly, Category= "AI")
+	TObjectPtr<UBehaviorTree> BehaviorTree;
 
-	
+	UPROPERTY()
+	TObjectPtr<AAuraAIController> AuraAIController;
 };

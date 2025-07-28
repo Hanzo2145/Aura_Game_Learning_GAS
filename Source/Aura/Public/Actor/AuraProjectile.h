@@ -69,5 +69,5 @@ private:
 
 	//float to set the life span of the projectile.
 	UPROPERTY(EditAnywhere,  Category = Projectile)
-	float Lifespan = 15.f;
+	float LifeSpan = 15.f;
 };

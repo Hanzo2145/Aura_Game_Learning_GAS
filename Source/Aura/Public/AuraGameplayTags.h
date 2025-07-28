@@ -49,6 +49,7 @@ public:
 	//Combat Tags
 	FGameplayTag Damage;
 	FGameplayTag Effects_HitReact;
+	FGameplayTag Abilities_Attack;
 
 	//Damage Types
 	FGameplayTag Damage_Fire;
@@ -61,6 +62,7 @@ public:
 	FGameplayTag Attributes_Resistance_Lightning;
 	FGameplayTag Attributes_Resistance_Arcane;
 	FGameplayTag Attributes_Resistance_Physical;
+	
 
 	
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
