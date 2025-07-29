@@ -56,6 +56,7 @@ void AAruraCharacterBase::MulticastHandleDeath_Implementation()
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Dissolve();
+	bDead = true;
 }
 
 void AAruraCharacterBase::BeginPlay()
@@ -85,10 +86,20 @@ void AAruraCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultVitalAttribute, 1.f);
 }
 
-FVector AAruraCharacterBase::GetCombatSocketLocation()
+FVector AAruraCharacterBase::GetCombatSocketLocation_Implementation()
 {
 	check(Weapon);
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
+bool AAruraCharacterBase::IsDead_Implementation() const
+{
+	return bDead;
+}
+
+AActor* AAruraCharacterBase::GetAvatar_Implementation()
+{
+	return this;
 }
 
 void AAruraCharacterBase::Dissolve()

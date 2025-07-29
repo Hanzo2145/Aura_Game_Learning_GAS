@@ -6,11 +6,6 @@
 /NAME:"UnrealEditor-RiderDebuggerSupport-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\BlueprintStackGetter.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\DebugLogger.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\RiderDebuggerSupport.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\UnrealFunctions.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\WideStringWrapper.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\PerModuleInline.gen.cpp.obj"
+"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\Module.RiderDebuggerSupport.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\Default.rc2.res"
 /OUT:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderDebuggerSupport\UnrealEditor-RiderDebuggerSupport-Win64-DebugGame.lib"

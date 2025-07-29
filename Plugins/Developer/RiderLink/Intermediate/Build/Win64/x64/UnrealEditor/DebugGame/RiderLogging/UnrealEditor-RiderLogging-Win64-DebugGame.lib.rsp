@@ -6,8 +6,6 @@
 /NAME:"UnrealEditor-RiderLogging-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\RiderLogging.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\RiderOutputDevice.cpp.obj"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\PerModuleInline.gen.cpp.obj"
+"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\Module.RiderLogging.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\Default.rc2.res"
 /OUT:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLogging\UnrealEditor-RiderLogging-Win64-DebugGame.lib"
