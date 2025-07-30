@@ -3,9 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "UObject/Interface.h"
 #include "CombatInterface.generated.h"
 
+USTRUCT(BlueprintType)
+struct FTaggedMontage
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UAnimMontage* Montage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag MontageTag;
+};
 
 class UAnimMontage;
 // This class does not need to be modified.
@@ -27,7 +39,7 @@ public:
 	virtual int32 GetPlayerLevel();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
-	FVector GetCombatSocketLocation();
+	FVector GetCombatSocketLocation(const FGameplayTag& MontageTag);
 	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Combat")
 	void UpdatingFacingTarget(const FVector& target);
@@ -44,4 +56,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	AActor* GetAvatar();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Combat")
+	TArray<FTaggedMontage> GetTaggedMontages();
 };

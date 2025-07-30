@@ -4,6 +4,7 @@
 #include "Character/AruraCharacterBase.h"
 
 #include "AbilitySystemComponent.h"
+#include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Aura/Aura.h"
 #include "Components/CapsuleComponent.h"
@@ -86,10 +87,23 @@ void AAruraCharacterBase::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultVitalAttribute, 1.f);
 }
 
-FVector AAruraCharacterBase::GetCombatSocketLocation_Implementation()
+FVector AAruraCharacterBase::GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag)
 {
-	check(Weapon);
-	return Weapon->GetSocketLocation(WeaponTipSocketName);
+	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+	if (MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_Weapon) && IsValid(Weapon))
+	{
+		return Weapon->GetSocketLocation(WeaponTipSocketName);
+	}
+	if (MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_RightHand))
+	{
+		return GetMesh()->GetSocketLocation(RightHandSocketName);
+	}
+	if (MontageTag.MatchesTagExact(GameplayTags.Montage_Attack_LeftHand))
+	{
+		return GetMesh()->GetSocketLocation(LeftHandSocketName);
+	}
+	UE_LOG(LogTemp, Warning, TEXT("GetCombatSocketLocation is returning an Empty FVector, Please Check Variables and Code"))
+	return FVector();
 }
 
 bool AAruraCharacterBase::IsDead_Implementation() const
@@ -100,6 +114,11 @@ bool AAruraCharacterBase::IsDead_Implementation() const
 AActor* AAruraCharacterBase::GetAvatar_Implementation()
 {
 	return this;
+}
+
+TArray<FTaggedMontage> AAruraCharacterBase::GetTaggedMontages_Implementation()
+{
+	return AttackMontages;
 }
 
 void AAruraCharacterBase::Dissolve()

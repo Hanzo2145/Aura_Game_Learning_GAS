@@ -51,6 +51,11 @@ public:
 	FGameplayTag Effects_HitReact;
 	FGameplayTag Abilities_Attack;
 
+	//Montage Tags
+	FGameplayTag Montage_Attack_Weapon;
+	FGameplayTag Montage_Attack_RightHand;
+	FGameplayTag Montage_Attack_LeftHand;
+
 	//Damage Types
 	FGameplayTag Damage_Fire;
 	FGameplayTag Damage_Lightning;
