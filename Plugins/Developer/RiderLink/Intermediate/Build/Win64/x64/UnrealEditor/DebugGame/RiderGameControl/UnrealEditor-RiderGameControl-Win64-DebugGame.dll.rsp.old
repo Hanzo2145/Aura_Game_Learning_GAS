@@ -36,7 +36,7 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 /NOIMPLIB
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderGameControl\RiderGameControl.cpp.obj"
+"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderGameControl\Module.RiderGameControl.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderGameControl\PerModuleInline.gen.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderGameControl\Default.rc2.res"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RD\UnrealEditor-RD-Win64-DebugGame.lib"

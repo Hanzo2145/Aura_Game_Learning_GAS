@@ -37,7 +37,7 @@
 /FUNCTIONPADMIN:6
 /NOIMPLIB
 /NATVIS:"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RenderCore\RenderCore.natvis"
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\RiderShaderInfo.cpp.obj"
+"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\PerModuleInline.gen.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"

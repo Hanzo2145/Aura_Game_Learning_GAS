@@ -6,7 +6,7 @@
 /NAME:"UnrealEditor-RiderShaderInfo-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\RiderShaderInfo.cpp.obj"
+"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\Module.RiderShaderInfo.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\PerModuleInline.gen.cpp.obj"
 "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\Default.rc2.res"
 /OUT:"D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderShaderInfo\UnrealEditor-RiderShaderInfo-Win64-DebugGame.lib"

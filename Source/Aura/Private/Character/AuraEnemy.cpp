@@ -122,6 +122,8 @@ void AAuraEnemy::HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCou
 void AAuraEnemy::Die()
 {
 	SetLifeSpan(LifeSpan);
+	if (AuraAIController) AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("Dead"), true);
+	
 	Super::Die();
 }
 
@@ -133,8 +135,10 @@ void AAuraEnemy::PossessedBy(AController* NewController)
 
 	AuraAIController->GetBlackboardComponent()->InitializeBlackboard(*BehaviorTree->BlackboardAsset);
 	AuraAIController->RunBehaviorTree(BehaviorTree);
+	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("Dead"), false);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("HitReacting"), false);
 	AuraAIController->GetBlackboardComponent()->SetValueAsBool(FName("RangedAttacker"), CharacterClass != ECharacterClass::Warrior);
+	
 }
 
 void AAuraEnemy::InitAbilityActorInfo()
