@@ -9,6 +9,7 @@
 #include "AruraCharacterBase.generated.h"
 
 
+class UNiagaraSystem;
 class UGameplayAbility;
 class UGameplayEffect;
 class UAttributeSet;
@@ -33,6 +34,8 @@ public:
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation() override;
 	virtual TArray<FTaggedMontage> GetTaggedMontages_Implementation() override;
+	virtual UNiagaraSystem* GetBloodEffect_Implementation() override;
+	virtual FTaggedMontage GetTaggedMontageByTag_Implementation(const FGameplayTag& MontageTag) override;
 	/*End Combat Interface*/
 
 	UFUNCTION(NetMulticast, reliable)
@@ -77,6 +80,9 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Attributes")
 	TSubclassOf<UGameplayEffect> DefaultVitalAttribute;
+
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Effects")
+	UNiagaraSystem* BloodEffect;
 
 	UPROPERTY()
 	bool bDead = false;
