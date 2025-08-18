@@ -8,6 +8,7 @@
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
 #include "Aura/Aura.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 
 AAruraCharacterBase::AAruraCharacterBase()
 {
@@ -42,6 +43,9 @@ void AAruraCharacterBase::Die()
 
 void AAruraCharacterBase::MulticastHandleDeath_Implementation()
 {
+	//PLay Sound at location
+	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
+	
 	//Behavior for the Weapon
 	Weapon->SetSimulatePhysics(true);
 	Weapon->SetEnableGravity(true);

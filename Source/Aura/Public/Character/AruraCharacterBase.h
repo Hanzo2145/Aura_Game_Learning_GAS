@@ -84,6 +84,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Effects")
 	UNiagaraSystem* BloodEffect;
 
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Effects")
+	USoundBase* DeathSound;
+
 	UPROPERTY()
 	bool bDead = false;
 
