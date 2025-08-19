@@ -106,7 +106,10 @@ FVector AAruraCharacterBase::GetCombatSocketLocation_Implementation(const FGamep
 	{
 		return GetMesh()->GetSocketLocation(LeftHandSocketName);
 	}
-	UE_LOG(LogTemp, Warning, TEXT("GetCombatSocketLocation is returning an Empty FVector, Please Check Variables and Code"))
+	if (MontageTag.MatchesTagExact(GameplayTags.CombatSocket_Tail))
+	{
+		return GetMesh()->GetSocketLocation(TailSocketName);
+	}
 	return FVector();
 }
 
