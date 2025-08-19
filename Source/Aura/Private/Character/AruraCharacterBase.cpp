@@ -145,6 +145,16 @@ FTaggedMontage AAruraCharacterBase::GetTaggedMontageByTag_Implementation(const F
 	return FTaggedMontage();
 }
 
+int32 AAruraCharacterBase::GetMinionCount_Implementation()
+{
+	return MinionCount;
+}
+
+void AAruraCharacterBase::AddToMinionCount_Implementation(int32 Amount)
+{
+	MinionCount += Amount;
+}
+
 void AAruraCharacterBase::Dissolve()
 {
 	if (IsValid(DissolveMaterialInstance))

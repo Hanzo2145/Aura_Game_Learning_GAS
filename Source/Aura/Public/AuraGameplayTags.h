@@ -49,7 +49,10 @@ public:
 	//Combat Tags
 	FGameplayTag Damage;
 	FGameplayTag Effects_HitReact;
+
+	//Abilities
 	FGameplayTag Abilities_Attack;
+	FGameplayTag Abilities_Summon;
 
 	//Combat Socket Tags
 	FGameplayTag CombatSocket_Weapon;
