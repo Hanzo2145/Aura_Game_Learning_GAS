@@ -6,6 +6,8 @@
 #include "Character/AruraCharacterBase.h"
 #include "AuraCharacter.generated.h"
 
+class UCameraComponent;
+class UBoxComponent;
 class USpringArmComponent;
 class AAuraHUD;
 class AAuraPlayerState;
@@ -34,4 +36,19 @@ private:
 	 */
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere)
+	UBoxComponent* BoxComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* Camera;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera Settings")
+	float MaxSpringArmlength = 1200.f;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Camera Settings")
+	float MinSpringArmlength = 500.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Camera Settings")
+	FVector BoxExtent = FVector(0.f, 30.f, 140.f);
 };

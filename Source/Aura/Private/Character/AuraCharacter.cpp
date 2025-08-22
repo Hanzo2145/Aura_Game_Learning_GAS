@@ -5,8 +5,11 @@
 
 #include "AbilitySystemComponent.h"
 #include "BlendSpaceAnalysis.h"
+#include "InterchangeResult.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Camera/CameraComponent.h"
 #include "Chaos/SoftsSpring.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Player/AuraPlayerController.h"
@@ -24,6 +27,14 @@ AAuraCharacter::AAuraCharacter()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("Spring Arm");
 	SpringArm->SetupAttachment(GetRootComponent());
 	SpringArm->SetRelativeRotation(FRotator(-40.f, 0.f, 0.0f));
+
+	Camera = CreateDefaultSubobject<UCameraComponent>("Camara");
+	Camera->SetupAttachment(SpringArm);
+
+	//BoxComponent
+	BoxComponent = CreateDefaultSubobject<UBoxComponent>("Box Component");
+	BoxComponent->SetupAttachment(Camera);
+	BoxComponent->SetBoxExtent(FVector(SpringArm->TargetArmLength, BoxExtent.Y, BoxExtent.Z));
 	
 }
 
@@ -52,7 +63,10 @@ int32 AAuraCharacter::GetPlayerLevel()
 void AAuraCharacter::SetSpringArmlength(float SpringArmlength)
 {
 	Super::SetSpringArmlength(SpringArmlength);
-	SpringArm->TargetArmLength = FMath::Clamp<float>(SpringArm->TargetArmLength += SpringArmlength, 200, 1200.f);
+	SpringArm->TargetArmLength = FMath::Clamp<float>(SpringArm->TargetArmLength += SpringArmlength, MinSpringArmlength, MaxSpringArmlength);
+	BoxComponent->SetBoxExtent(FVector(SpringArm->TargetArmLength, BoxExtent.Y, BoxExtent.Z));
+	UE_LOG(LogTemp, Warning, TEXT("SpringArmLength is = %f"), SpringArm->TargetArmLength);
+	UE_LOG(LogTemp, Warning, TEXT("BoxExtent.X is = %f"), BoxComponent->GetScaledBoxExtent().X);
 }
 
 void AAuraCharacter::InitAbilityActorInfo()

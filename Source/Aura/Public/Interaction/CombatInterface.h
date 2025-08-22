@@ -54,6 +54,7 @@ public:
 	void UpdatingFacingTarget(const FVector& target);
 
 	virtual void SetSpringArmlength(float SpringArmlength);
+	
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	UAnimMontage* GetHitReactMontage();
