@@ -65,8 +65,6 @@ void AAuraCharacter::SetSpringArmlength(float SpringArmlength)
 	Super::SetSpringArmlength(SpringArmlength);
 	SpringArm->TargetArmLength = FMath::Clamp<float>(SpringArm->TargetArmLength += SpringArmlength, MinSpringArmlength, MaxSpringArmlength);
 	BoxComponent->SetBoxExtent(FVector(SpringArm->TargetArmLength, BoxExtent.Y, BoxExtent.Z));
-	UE_LOG(LogTemp, Warning, TEXT("SpringArmLength is = %f"), SpringArm->TargetArmLength);
-	UE_LOG(LogTemp, Warning, TEXT("BoxExtent.X is = %f"), BoxComponent->GetScaledBoxExtent().X);
 }
 
 void AAuraCharacter::InitAbilityActorInfo()
