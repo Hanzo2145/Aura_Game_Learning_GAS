@@ -2,6 +2,7 @@
 
 #pragma once
 
+
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
 
@@ -57,6 +58,10 @@ public:
 	//Abilities.Fire
 	FGameplayTag Abilities_Fire_FireBolt;
 
+	//Abilities.Cooldown
+	FGameplayTag Cooldown_Fire_FireBolt;
+
+	
 	//Combat Socket Tags
 	FGameplayTag CombatSocket_Weapon;
 	FGameplayTag CombatSocket_RightHand;
