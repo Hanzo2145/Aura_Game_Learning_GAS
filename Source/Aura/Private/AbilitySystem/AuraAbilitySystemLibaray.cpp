@@ -79,12 +79,26 @@ void UAuraAbilitySystemLibaray::GiveStartupAbilities(const UObject* WorldContext
 	const FCharacterClassDefaultInfo& DefaultInfo = CharacterClassInfo->GetClassDefaultInfo(CharacterClass);
 	for (TSubclassOf<UGameplayAbility> AbilityClass : DefaultInfo.StartupAbilities)
 	{
-		if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(ASC->GetAvatarActor()))
+		if (ASC->GetAvatarActor()->Implements<UCombatInterface>())
 		{
-			FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, CombatInterface->GetPlayerLevel());
+			FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(AbilityClass, ICombatInterface::Execute_GetPlayerLevel(ASC->GetAvatarActor()));
 			ASC->GiveAbility(AbilitySpec);
 		}
 	}
+}
+
+int32 UAuraAbilitySystemLibaray::GetXPRewardForClassAndLevel(const UObject* WorldContextObject, const ECharacterClass CharacterClass, const int32 Level)
+{
+	UCharacterClassInfo* CharacterClasses = GetCharacterClassInfo(WorldContextObject);
+	if (CharacterClasses)
+	{
+		const FCharacterClassDefaultInfo Info = CharacterClasses->GetClassDefaultInfo(CharacterClass);
+		float XPReward = Info.XPReward.GetValueAtLevel(Level);
+		XPReward = FMath::RoundToInt(XPReward);
+		
+		return static_cast<int32>(XPReward);
+	}
+	return 0;
 }
 
 UCharacterClassInfo* UAuraAbilitySystemLibaray::GetCharacterClassInfo(const UObject* WorldContextObject)
@@ -157,3 +171,5 @@ bool UAuraAbilitySystemLibaray::IsNotFriend(AActor* FirstActor, AActor* SecondAc
 
 	return !Friend;
 }
+
+

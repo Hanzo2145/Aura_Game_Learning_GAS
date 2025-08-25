@@ -155,6 +155,11 @@ void AAruraCharacterBase::AddToMinionCount_Implementation(int32 Amount)
 	MinionCount += Amount;
 }
 
+ECharacterClass AAruraCharacterBase::GetCharacterClass_Implementation()
+{
+	return CharacterClass;
+}
+
 void AAruraCharacterBase::Dissolve()
 {
 	if (IsValid(DissolveMaterialInstance))
@@ -177,5 +182,6 @@ void AAruraCharacterBase::AddCharacterAbilities()
 	if (!HasAuthority()) return;
 
 	AuraASC->AddCharacterAbilities(StartupAbilities);
+	AuraASC->AddCharacterPassiveAbilities(StartupPassiveAbilities);
 }
 

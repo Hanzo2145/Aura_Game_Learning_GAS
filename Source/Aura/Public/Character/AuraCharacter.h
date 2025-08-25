@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/AruraCharacterBase.h"
+#include "Interaction/PlayerInterface.h"
 #include "AuraCharacter.generated.h"
 
 class UCameraComponent;
@@ -15,7 +16,7 @@ class AAuraPlayerState;
  * 
  */
 UCLASS()
-class AURA_API AAuraCharacter : public AAruraCharacterBase
+class AURA_API AAuraCharacter : public AAruraCharacterBase, public IPlayerInterface
 {
 	GENERATED_BODY()
 public:
@@ -24,9 +25,15 @@ public:
 	virtual void OnRep_PlayerState() override;
 
 	/* Combat Interface*/
-	virtual int32 GetPlayerLevel() override;
+	virtual int32 GetPlayerLevel_Implementation() override;
 	virtual void SetSpringArmlength(float SpringArmlength) override;
 	/* /Combat Interface*/
+
+	/* player Interface*/
+	virtual void AddToXP_Implementation(int32 InXP) override;
+	virtual void LevelUp_Implementation() override;
+	/* End player Interface*/
+	
 
 private:
 	virtual void InitAbilityActorInfo() override;

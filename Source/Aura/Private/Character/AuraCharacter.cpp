@@ -35,6 +35,10 @@ AAuraCharacter::AAuraCharacter()
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>("Box Component");
 	BoxComponent->SetupAttachment(Camera);
 	BoxComponent->SetBoxExtent(FVector(SpringArm->TargetArmLength, BoxExtent.Y, BoxExtent.Z));
+
+	//CharacterClass
+	
+	CharacterClass = ECharacterClass::Elementalist;
 	
 }
 
@@ -53,7 +57,7 @@ void AAuraCharacter::OnRep_PlayerState()
 	InitAbilityActorInfo();
 }
 
-int32 AAuraCharacter::GetPlayerLevel()
+int32 AAuraCharacter::GetPlayerLevel_Implementation()
 {
 	const AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
 	check(AuraPlayerState);
@@ -65,6 +69,18 @@ void AAuraCharacter::SetSpringArmlength(float SpringArmlength)
 	Super::SetSpringArmlength(SpringArmlength);
 	SpringArm->TargetArmLength = FMath::Clamp<float>(SpringArm->TargetArmLength += SpringArmlength, MinSpringArmlength, MaxSpringArmlength);
 	BoxComponent->SetBoxExtent(FVector(SpringArm->TargetArmLength, BoxExtent.Y, BoxExtent.Z));
+}
+
+void AAuraCharacter::AddToXP_Implementation(int32 InXP)
+{
+	AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+	check(AuraPlayerState);
+	AuraPlayerState->AddToXP(InXP);
+}
+
+void AAuraCharacter::LevelUp_Implementation()
+{
+	
 }
 
 void AAuraCharacter::InitAbilityActorInfo()
