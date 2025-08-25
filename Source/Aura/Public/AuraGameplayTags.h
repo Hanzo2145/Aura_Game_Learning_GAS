@@ -39,6 +39,9 @@ public:
 	FGameplayTag Attributes_Secondary_MaxHealth;
 	FGameplayTag Attributes_Secondary_MaxMana;
 
+	// Meta Attributes
+	FGameplayTag Attributes_Meta_IncomingXP;
+
 	//Input Tags
 	FGameplayTag InputTag_LMB;
 	FGameplayTag InputTag_RMB;

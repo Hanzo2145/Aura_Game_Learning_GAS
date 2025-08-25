@@ -7,6 +7,8 @@
 #include "GameFramework/PlayerState.h"
 #include "AuraPlayerState.generated.h"
 
+class ULevelUpInfo;
+struct FAuraLevelUpInfo;
 class UAbilitySystemComponent;
 class UAttributeSet;
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerStateChange, int32 /*StateValue*/);
@@ -36,7 +38,8 @@ public:
 	void AddToXP(int32 InXP);
 	void AddToLevel(int32 InLevel);
 
-	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Widget Data")
+	TObjectPtr<ULevelUpInfo> LevelUpInfo;
 
 protected:
 	UPROPERTY(VisibleAnywhere)
