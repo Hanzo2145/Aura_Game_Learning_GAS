@@ -10,6 +10,8 @@
 class UAttributeSet;
 class UAbilitySystemComponent;
 
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerStatChangedSignature, int32, NewValue);
 /*
  * this is a struct that allow us to set the 4 Variables that we created
 *	 * 1. Info from the player Controller
