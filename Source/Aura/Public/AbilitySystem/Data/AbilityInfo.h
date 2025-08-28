@@ -26,6 +26,12 @@ struct FAuraAbilityInfo
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<const UMaterialInterface> BackgroundMaterial = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FLinearColor TextColor = FColor::White;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FLinearColor TextOutlineColor = FColor::Black; 
 };
 /**
  * 

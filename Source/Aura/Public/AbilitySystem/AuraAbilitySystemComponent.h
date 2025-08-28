@@ -28,13 +28,18 @@ public:
 	void ForEachAbility(const FForEachAbility& Delegate);
 	static FGameplayTag GetAbilityTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	static FGameplayTag GetInputTagFromSpec(const FGameplayAbilitySpec& AbilitySpec);
+	void UpgradeAttributes(const FGameplayTag& AttributeTag);
 
+	UFUNCTION(Server, Reliable)
+	void ServerUpgradeAttribute(const FGameplayTag& AttributeTag);
 	/*
 	 * Variables Declarations
 	 */
 	FEffectAssetsTags EffectAssetsTagsDelegate;
 	FAbilitiesGiven AbilitiesGivenDelegate;
 	bool bStartupAbilitiesGiven = false;
+
+	
 
 	
 protected:

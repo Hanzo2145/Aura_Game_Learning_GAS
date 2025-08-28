@@ -139,6 +139,16 @@ void AAuraCharacter::AddToSpellPoints_Implementation(const int32 InSpellPoints)
 	GetAuraPlayerState()->AddSpellPoints(InSpellPoints);
 }
 
+int32 AAuraCharacter::GetAttributesPoints_Implementation() const
+{
+	return GetAuraPlayerState()->GetAttributePoints();
+}
+
+int32 AAuraCharacter::GetSpellPoints_Implementation() const
+{
+	return GetAuraPlayerState()->GetSpellPoints();
+}
+
 void AAuraCharacter::InitAbilityActorInfo()
 {
 	AAuraPlayerState* AuraPlayerState = GetAuraPlayerState();
