@@ -48,5 +48,11 @@ public:
 	int32 FindLevelForXP(const int32 InXP);
 
 	UFUNCTION(BlueprintNativeEvent)
+	int32 GetAttributesPoints() const;
+
+	UFUNCTION(BlueprintNativeEvent)
+	int32 GetSpellPoints() const;
+
+	UFUNCTION(BlueprintNativeEvent)
 	void LevelUp();
 };
