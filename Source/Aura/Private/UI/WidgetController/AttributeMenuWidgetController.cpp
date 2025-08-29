@@ -10,40 +10,35 @@
 
 void UAttributeMenuWidgetController::BroadcastInitialValues()
 {
-	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
-
 	check(AttributeInfo)
 	
-	for (auto& Pair : AuraAttributeSet->TagsToAttributes)
+	for (auto& Pair : GetAuraAttributeSet()->TagsToAttributes)
 	{
 		BroadcastAttributeInfo(Pair.Key, Pair.Value());
 	}
-	AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
-	AttributePointsChangedDelegate.Broadcast(AuraPlayerState->GetAttributePoints());
-	SpellPointsChangedDelegate.Broadcast(AuraPlayerState->GetSpellPoints());
+	AttributePointsChangedDelegate.Broadcast(GetAuraPlayerState()->GetAttributePoints());
+	SpellPointsChangedDelegate.Broadcast(GetAuraPlayerState()->GetSpellPoints());
 }
 
-void UAttributeMenuWidgetController::BindCallbacksToDeoendencies()
+void UAttributeMenuWidgetController::BindCallbacksToDependencies()
 {
-	const UAuraAttributeSet* AuraAttributeSet = CastChecked<UAuraAttributeSet>(AttributeSet);
 	check(AttributeInfo)
-	for (auto& Pair : AuraAttributeSet->TagsToAttributes)
+	for (auto& Pair : GetAuraAttributeSet()->TagsToAttributes)
 	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Pair.Value()).AddLambda(
+		GetAuraAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(Pair.Value()).AddLambda(
 			[this, Pair](const FOnAttributeChangeData& Data)
 			{
 				BroadcastAttributeInfo(Pair.Key, Pair.Value());
 			}
 			);
 	}
-	AAuraPlayerState* AuraPlayerState = CastChecked<AAuraPlayerState>(PlayerState);
-	AuraPlayerState->OnAttributePointsChangedDelegate.AddLambda(
+	GetAuraPlayerState()->OnAttributePointsChangedDelegate.AddLambda(
 		[this](int32 NewPoints)
 		{
 			AttributePointsChangedDelegate.Broadcast(NewPoints);
 		}
 		);
-	AuraPlayerState->OnSpellPointsChangedDelegate.AddLambda(
+	GetAuraPlayerState()->OnSpellPointsChangedDelegate.AddLambda(
 		[this](int32 NewPoints)
 		{
 			SpellPointsChangedDelegate.Broadcast(NewPoints);
@@ -53,12 +48,10 @@ void UAttributeMenuWidgetController::BindCallbacksToDeoendencies()
 
 void UAttributeMenuWidgetController::UpgradeAttributes(const FGameplayTag& AttributeTag)
 {
-	UAuraAbilitySystemComponent* AuraASC = CastChecked<UAuraAbilitySystemComponent>(AbilitySystemComponent);
-	AuraASC->UpgradeAttributes(AttributeTag);
+	GetAuraAbilitySystemComponent()->UpgradeAttributes(AttributeTag);
 }
 
-void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& AttributeTag,
-                                                            const FGameplayAttribute& Attribute) const
+void UAttributeMenuWidgetController::BroadcastAttributeInfo(const FGameplayTag& AttributeTag, const FGameplayAttribute& Attribute) const
 {
 	FAuraAttributeInfo Info = AttributeInfo->FindAttributeInfoForTag(AttributeTag);
 	Info.AttributeValue = Attribute.GetNumericValue(AttributeSet);
