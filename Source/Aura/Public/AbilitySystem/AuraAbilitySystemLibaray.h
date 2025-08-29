@@ -10,6 +10,10 @@
 
 class UOverlayWidgetController;
 class UAbilitySystemComponent;
+class UAttributeMenuWidgetController;
+class USpellMenuWidgetController;
+struct FWidgetControllerParams;
+
 /**
  * 
  */
@@ -20,11 +24,17 @@ class AURA_API UAuraAbilitySystemLibaray : public UBlueprintFunctionLibrary
 	
 public:
 
-	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller")
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller", meta = (DefaultToSelf = "WorldContextObject"))
+	static bool MakeWidgetControllerParams(const UObject* WorldContextObject, FWidgetControllerParams& OutWCParams, AAuraHUD*& OutAuraHUD);
+	
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller", meta = (DefaultToSelf = "WorldContextObject"))
 	static UOverlayWidgetController* GetOverlayWidgetController(const UObject* WorldContextObject);
 
-	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller")
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller", meta = (DefaultToSelf = "WorldContextObject"))
 	static UAttributeMenuWidgetController* GetAttributeMenuWidgetController(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Widget Controller", meta = (DefaultToSelf = "WorldContextObject"))
+	static USpellMenuWidgetController* GetSpellMenuWidgetController(const UObject* WorldContextObject);
 
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static void InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC);

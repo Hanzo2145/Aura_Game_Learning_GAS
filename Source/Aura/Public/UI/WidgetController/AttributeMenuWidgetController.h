@@ -23,7 +23,7 @@ class AURA_API UAttributeMenuWidgetController : public UAuraWidgetController
 
 public:
 	virtual void BroadcastInitialValues() override;
-	virtual void BindCallbacksToDeoendencies() override;
+	virtual void BindCallbacksToDependencies() override;
 
 	/*
 	 * Variables Declarations
