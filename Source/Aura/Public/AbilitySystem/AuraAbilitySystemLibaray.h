@@ -12,6 +12,7 @@ class UOverlayWidgetController;
 class UAbilitySystemComponent;
 class UAttributeMenuWidgetController;
 class USpellMenuWidgetController;
+class UAbilityInfo;
 struct FWidgetControllerParams;
 
 /**
@@ -44,6 +45,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
+	static UAbilityInfo* GetAbilityInfo(const UObject* WorldContextObject);
 
 	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
 	static bool IsBlockedHit(const FGameplayEffectContextHandle& EffectContextHandle);
