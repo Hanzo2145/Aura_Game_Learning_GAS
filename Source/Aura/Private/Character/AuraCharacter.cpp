@@ -72,7 +72,7 @@ void AAuraCharacter::OnRep_PlayerState()
 
 int32 AAuraCharacter::GetPlayerLevel_Implementation()
 {
-	return GetAuraPlayerState()->GetPlayerLevelVaribale();
+	return GetAuraPlayerState()->GetPlayerLevel();
 }
 
 void AAuraCharacter::SetSpringArmlength(float SpringArmlength)
@@ -127,6 +127,11 @@ int32 AAuraCharacter::GetSpellPointsRewards_Implementation(const int32 InLevel) 
 void AAuraCharacter::AddToPlayerLevel_Implementation(const int32 InPlayerLevel)
 {
 	GetAuraPlayerState()->AddToLevel(InPlayerLevel);
+	
+	if (UAuraAbilitySystemComponent* AuraASC = Cast<UAuraAbilitySystemComponent>(GetAbilitySystemComponent()))
+	{
+		AuraASC->UpdateAbilityStatuses(GetAuraPlayerState()->GetPlayerLevel());
+	}
 }
 
 void AAuraCharacter::AddToAttributesPoints_Implementation(const int32 InAttributesPoints)

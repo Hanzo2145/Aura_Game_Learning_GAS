@@ -7,6 +7,7 @@
 #include "UObject/NoExportTypes.h"
 #include "AuraWidgetController.generated.h"
 
+struct FAuraAbilityInfo;
 class UAbilityInfo;
 class UAuraAttributeSet;
 class UAuraAbilitySystemComponent;
@@ -73,7 +74,6 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Messages")
 	FAbilityInfoSignature AbilityInfoDelegate;
-	
 protected:
 
 	/*Variables Declarations*/
