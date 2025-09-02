@@ -32,8 +32,8 @@ public:
 	static FGameplayTag GetStatusFromSpec(const FGameplayAbilitySpec& AbilitySpec);
 	FGameplayAbilitySpec* GetSpecFromAbilityTag(const FGameplayTag& AbilityTag);
 	void UpgradeAttributes(const FGameplayTag& AttributeTag);
-
 	void UpdateAbilityStatuses(int32 Level);
+	bool GetDiscretionByAbilityTag(const FGameplayTag& AbilityTag, FString& OutDescription, FString& OutNextLevelDescription);
 	
 
 	UFUNCTION(Server, Reliable)
@@ -49,9 +49,6 @@ public:
 	FAbilityStatusChanged AbilityStatusChanged;
 	bool bStartupAbilitiesGiven = false;
 
-	
-
-	
 protected:
 	virtual void OnRep_ActivateAbilities()override;
 
