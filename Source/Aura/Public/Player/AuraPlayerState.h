@@ -32,7 +32,7 @@ public:
 	FOnPlayerStateChange OnSpellPointsChangedDelegate;
 
 	/*Private Getters*/
-	FORCEINLINE int32 GetPlayerLevelVaribale() const { return Level; }
+	FORCEINLINE int32 GetPlayerLevel() const { return Level; }
 	FORCEINLINE int32 GetXP() const { return XP; }
 	FORCEINLINE int32 GetAttributePoints() const { return AttributePoints; }
 	FORCEINLINE int32 GetSpellPoints() const { return SpellPoints; }
@@ -77,7 +77,7 @@ private:
 	void OnRep_AttributePoints(int32 OldAttributePoints);
 
 	UPROPERTY(VisibleAnywhere, ReplicatedUsing=OnRep_SpellPoints)
-	int32 SpellPoints = 1;
+	int32 SpellPoints = 0;
 
 	UFUNCTION()
 	void OnRep_SpellPoints(int32 OldSpellPoints);
