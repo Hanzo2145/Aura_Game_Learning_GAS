@@ -13,11 +13,6 @@
 #include "Player/AuraPlayerState.h"
 #include "UI/HUD/AuraHUD.h"
 #include "NiagaraComponent.h"
-#include "AssetTypeActions/AssetDefinition_SoundBase.h"
-#include "Blueprint/UserWidget.h"
-#include "Kismet/BlueprintTypeConversions.h"
-#include "Kismet/GameplayStatics.h"
-
 
 AAuraCharacter::AAuraCharacter()
 {
