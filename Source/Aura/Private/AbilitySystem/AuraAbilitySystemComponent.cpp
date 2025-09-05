@@ -254,30 +254,29 @@ void UAuraAbilitySystemComponent::ClientEquipAbility(const FGameplayTag& Ability
 
 void UAuraAbilitySystemComponent::ServerEquipAbility_Implementation(const FGameplayTag& AbilityTag, const FGameplayTag& Slot)
 {
-	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 	if (FGameplayAbilitySpec* AbilitySpec = GetSpecFromAbilityTag(AbilityTag))
 	{
-		const FGameplayTag& PervSlot = GetInputTagFromSpec(*AbilitySpec);
+		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+		const FGameplayTag& PrevSlot = GetInputTagFromSpec(*AbilitySpec);
 		const FGameplayTag& Status = GetStatusFromSpec(*AbilitySpec);
 
-		const bool bStatusVaild = Status == GameplayTags.Abilities_Status_Equipped || Status == GameplayTags.Abilities_Status_Unlocked;
-		if (bStatusVaild)
+		const bool bStatusValid = Status == GameplayTags.Abilities_Status_Equipped || Status == GameplayTags.Abilities_Status_Unlocked;
+		if (bStatusValid)
 		{
-			//remove this input tag from any ability that has it. 
+			// Remove this InputTag (slot) from any Ability that has it.
 			ClearAbilitiesOfSlot(Slot);
-
-			//Clear this ability's slot just in case it's a different slot
+			// Clear this ability's slot, just in case, it's a different slot
 			ClearSlot(AbilitySpec);
-			//Now, Assign this ability to this slot
-			AbilitySpec->GetDynamicSpecSourceTags().AddTag(Slot);
+			// Now, assign this ability to this slot
+			AbilitySpec->DynamicAbilityTags.AddTag(Slot);
 			if (Status.MatchesTagExact(GameplayTags.Abilities_Status_Unlocked))
 			{
-				AbilitySpec->GetDynamicSpecSourceTags().RemoveTag(GameplayTags.Abilities_Status_Unlocked);
-				AbilitySpec->GetDynamicSpecSourceTags().AddTag(GameplayTags.Abilities_Status_Equipped);
+				AbilitySpec->DynamicAbilityTags.RemoveTag(GameplayTags.Abilities_Status_Unlocked);
+				AbilitySpec->DynamicAbilityTags.AddTag(GameplayTags.Abilities_Status_Equipped);
 			}
 			MarkAbilitySpecDirty(*AbilitySpec);
-			ClientEquipAbility(AbilityTag, GameplayTags.Abilities_Status_Equipped, Slot, PervSlot);
 		}
+		ClientEquipAbility(AbilityTag, GameplayTags.Abilities_Status_Equipped, Slot, PrevSlot);
 	}
 }
 

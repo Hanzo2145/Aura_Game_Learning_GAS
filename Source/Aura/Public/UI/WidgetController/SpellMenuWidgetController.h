@@ -60,6 +60,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "GAS|Buttons")
 	void SpellRowGlobePressed(const FGameplayTag& SlotTag,const FGameplayTag& AbilityType);
 
+	UFUNCTION(Client, Reliable)
 	void OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot);
 
 private:

@@ -37,7 +37,9 @@ void USpellMenuWidgetController::BindCallbacksToDependencies()
 				AbilityInfoDelegate.Broadcast(Info);
 			}
 		}
-		);	
+		);
+	GetAuraAbilitySystemComponent()->AbilityEquipped.AddUObject(this, &USpellMenuWidgetController::OnAbilityEquipped);
+	
 	GetAuraPlayerState()->OnSpellPointsChangedDelegate.AddLambda(
 		[this](int32 SpellPoints)
 		{
@@ -52,7 +54,6 @@ void USpellMenuWidgetController::BindCallbacksToDependencies()
 			SpellGlobeSelectedDelegate.Broadcast(EnableSpendPoints, EnableEquip, Description, NextLevelDescription);
 		}
 		);
-	GetAuraAbilitySystemComponent()->AbilityEquipped.AddUObject(this, &USpellMenuWidgetController::OnAbilityEquipped);
 }
 
 void USpellMenuWidgetController::SpendPointsButtonPressed()
@@ -131,23 +132,25 @@ void USpellMenuWidgetController::EquipButtonPressed()
 void USpellMenuWidgetController::SpellRowGlobePressed(const FGameplayTag& SlotTag, const FGameplayTag& AbilityType)
 {
 	if (!bWaitingForEquipSelection) return;
-	// check selected ability aginst the slot's ability type.
-	// (Don't equip an offensive spell in a passive slot and vice versa
+	// Check selected ability against the slot's ability type.
+	// (don't equip an offensive spell in a passive slot and vice versa)
 	const FGameplayTag& SelectedAbilityType = AbilityInfo->FindAbilityInfoForTag(SelectedAbility.Ability).AbilityTypeTag;
 	if (!SelectedAbilityType.MatchesTagExact(AbilityType)) return;
 
 	GetAuraAbilitySystemComponent()->ServerEquipAbility(SelectedAbility.Ability, SlotTag);
 }
 
-void USpellMenuWidgetController::OnAbilityEquipped(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot)
+void USpellMenuWidgetController::OnAbilityEquipped_Implementation(const FGameplayTag& AbilityTag, const FGameplayTag& Status, const FGameplayTag& Slot, const FGameplayTag& PreviousSlot)
 {
 	bWaitingForEquipSelection = false;
+
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
+	
 	FAuraAbilityInfo LastSlotInfo;
 	LastSlotInfo.StatusTag = GameplayTags.Abilities_Status_Unlocked;
 	LastSlotInfo.InputTag = PreviousSlot;
 	LastSlotInfo.AbilityTag = GameplayTags.Abilities_None;
-	//broadcast empty info if PerviousSlot is a valid slot. only if equipping an already equipped spell
+	// Broadcast empty info if PreviousSlot is a valid slot. Only if equipping an already-equipped spell
 	AbilityInfoDelegate.Broadcast(LastSlotInfo);
 
 	FAuraAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilityTag);
