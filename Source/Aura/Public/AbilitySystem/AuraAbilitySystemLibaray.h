@@ -62,6 +62,33 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
 	static void SetIsCriticalHit(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool InIsCriticalHit);
 
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static float GetDebuffDamage(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetDebuffDamage(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, float InDebuffDamage);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static float GetDebuffDuration(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetDebuffDuration(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, float InDebuffDuration);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static float GetDebuffFrequency(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetDebuffFrequency(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, float InDebuffFrequency);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static bool GetIsSuccessfulDebuff(const FGameplayEffectContextHandle& EffectContextHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static void SetIsSuccessfulDebuff(UPARAM(ref) FGameplayEffectContextHandle& EffectContextHandle, bool InbIsSuccessfulDebuff);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Effects")
+	static FGameplayTag GetDebuffType(const FGameplayEffectContextHandle& EffectContextHandle);
+
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
 	static void GetLivePlayersWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereOrigin);
 

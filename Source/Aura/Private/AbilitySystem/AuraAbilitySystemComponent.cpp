@@ -268,11 +268,11 @@ void UAuraAbilitySystemComponent::ServerEquipAbility_Implementation(const FGamep
 			// Clear this ability's slot, just in case, it's a different slot
 			ClearSlot(AbilitySpec);
 			// Now, assign this ability to this slot
-			AbilitySpec->DynamicAbilityTags.AddTag(Slot);
+			AbilitySpec->GetDynamicSpecSourceTags().AddTag(Slot);
 			if (Status.MatchesTagExact(GameplayTags.Abilities_Status_Unlocked))
 			{
-				AbilitySpec->DynamicAbilityTags.RemoveTag(GameplayTags.Abilities_Status_Unlocked);
-				AbilitySpec->DynamicAbilityTags.AddTag(GameplayTags.Abilities_Status_Equipped);
+				AbilitySpec->GetDynamicSpecSourceTags().RemoveTag(GameplayTags.Abilities_Status_Unlocked);
+				AbilitySpec->GetDynamicSpecSourceTags().AddTag(GameplayTags.Abilities_Status_Equipped);
 			}
 			MarkAbilitySpecDirty(*AbilitySpec);
 		}
