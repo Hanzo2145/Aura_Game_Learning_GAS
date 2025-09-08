@@ -61,7 +61,7 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 		{
 			RepBits |= 1 << 12;
 		}
-		if (DebuffType.IsValid())
+		if (DamageType.IsValid())
 		{
 			RepBits |= 1 << 13;
 		}
@@ -137,12 +137,12 @@ bool FAuraGameplayEffectContext::NetSerialize(FArchive& Ar, class UPackageMap* M
 	{
 		if (Ar.IsLoading())
 		{
-			if (!DebuffType.IsValid())
+			if (!DamageType.IsValid())
 			{
-				DebuffType = TSharedPtr<FGameplayTag>(new FGameplayTag());
+				DamageType = MakeShared<FGameplayTag>();
 			}
 		}
-		DebuffType->NetSerialize(Ar, Map, bOutSuccess);
+		DamageType->NetSerialize(Ar, Map, bOutSuccess);
 	}
 
 	if (Ar.IsLoading())

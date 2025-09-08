@@ -243,6 +243,9 @@ private:
 	void SetEffectProperties(const FGameplayEffectModCallbackData& Data, FEffectProperties& Props) const;
 	void ShowFloatingText(const FEffectProperties& Props, float Damage, bool blockedHit, bool bCriticalHit) const;
 	void SendXPEvent(const FEffectProperties& Props);
+	void HandleIncomingDamage(const FEffectProperties& Props);
+	void HandleIncomingXP(const FEffectProperties& Props);
+	void Debuff(const FEffectProperties& Props);
 
 	bool bTopOffHealth = false;
 	bool bTopOffMana = false;
