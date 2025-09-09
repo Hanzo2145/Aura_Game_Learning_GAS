@@ -10,6 +10,7 @@
 #include "AruraCharacterBase.generated.h"
 
 
+class UDebuffNiagaraComponent;
 enum class ECharacterClass : uint8;
 class UNiagaraSystem;
 class UGameplayAbility;
@@ -41,8 +42,10 @@ public:
 	virtual int32 GetMinionCount_Implementation() override;
 	virtual void AddToMinionCount_Implementation(int32 Amount) override;
 	virtual ECharacterClass GetCharacterClass_Implementation() override;
+	virtual FOnASCRegistered GetOnAscRegisteredDelegate() override;
 	/*End Combat Interface*/
-
+	
+	FOnASCRegistered OnAscRegistered;
 	UFUNCTION(NetMulticast, reliable)
 	virtual void MulticastHandleDeath();
 
@@ -119,6 +122,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	ECharacterClass CharacterClass = ECharacterClass::None;
+
+	UPROPERTY(VisibleAnywhere, Category = "Visuals")
+	TObjectPtr<UDebuffNiagaraComponent> BurnDebuffComponent;
 
 private:
 
