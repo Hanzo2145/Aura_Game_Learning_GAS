@@ -31,9 +31,9 @@ public:
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 	/* Combat Interface*/
-	virtual UAnimMontage* GetHitReactMontage_Implementation();
-	virtual void Die() override;
-	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag);
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die(const FVector& DeathImpulse) override;
+	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
 	virtual bool IsDead_Implementation() const override;
 	virtual AActor* GetAvatar_Implementation() override;
 	virtual TArray<FTaggedMontage> GetTaggedMontages_Implementation() override;
@@ -47,7 +47,7 @@ public:
 	
 	FOnASCRegistered OnAscRegistered;
 	UFUNCTION(NetMulticast, reliable)
-	virtual void MulticastHandleDeath();
+	virtual void MulticastHandleDeath(const FVector& DeathImpulse);
 
 	/*Variables Declarations*/
 

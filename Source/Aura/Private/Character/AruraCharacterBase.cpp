@@ -40,15 +40,15 @@ UAnimMontage* AAruraCharacterBase::GetHitReactMontage_Implementation()
 	return HitReactMontage;
 }
 
-void AAruraCharacterBase::Die()
+void AAruraCharacterBase::Die(const FVector& DeathImpulse)
 {
 	Weapon->DetachFromComponent(FDetachmentTransformRules(EDetachmentRule::KeepWorld, true));
-	MulticastHandleDeath();
+	MulticastHandleDeath(DeathImpulse);
 }
 
-void AAruraCharacterBase::MulticastHandleDeath_Implementation()
+void AAruraCharacterBase::MulticastHandleDeath_Implementation(const FVector& DeathImpulse)
 {
-	BurnDebuffComponent->Deactivate();
+	
 	//PLay Sound at location
 	UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation(), GetActorRotation());
 	
@@ -56,19 +56,21 @@ void AAruraCharacterBase::MulticastHandleDeath_Implementation()
 	Weapon->SetSimulatePhysics(true);
 	Weapon->SetEnableGravity(true);
 	Weapon->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
+	Weapon->AddImpulse(DeathImpulse * 0.1f, NAME_None, true);
 
 	//Behavior for the Mesh
 	GetMesh()->SetSimulatePhysics(true);
 	GetMesh()->SetEnableGravity(true);
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::PhysicsOnly);
 	GetMesh()->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+	GetMesh()->AddImpulse(DeathImpulse, NAME_None, true);
 
 	//Behavior for the Capsule
 	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Dissolve();
 	bDead = true;
-	
+	BurnDebuffComponent->Deactivate();
 }
 
 void AAruraCharacterBase::BeginPlay()
@@ -171,6 +173,7 @@ FOnASCRegistered AAruraCharacterBase::GetOnAscRegisteredDelegate()
 {
 	return OnAscRegistered;
 }
+
 
 void AAruraCharacterBase::Dissolve()
 {

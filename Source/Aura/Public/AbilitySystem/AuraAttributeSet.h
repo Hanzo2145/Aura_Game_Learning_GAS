@@ -21,7 +21,7 @@ struct FEffectProperties
 	/**
 	 * Variables Declarations
 	 */
-	FGameplayEffectContextHandle EffectConsContextHandle;
+	FGameplayEffectContextHandle EffectContextHandle;
 	
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> SourceASC = nullptr;

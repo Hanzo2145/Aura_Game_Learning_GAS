@@ -31,7 +31,7 @@ public:
 	 * Functions Declarations
 	 */
 	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
-	virtual void Die() override;
+	virtual void Die(const FVector& DeathImpulse) override;
 	virtual void PossessedBy(AController* NewController) override;
 
 	

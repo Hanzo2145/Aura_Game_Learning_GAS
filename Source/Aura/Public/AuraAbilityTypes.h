@@ -48,7 +48,12 @@ struct FDamageEffectParams
 
 	UPROPERTY()
 	float DebuffDuration = 0.f;
-	
+
+	UPROPERTY()
+	float DeathImpulseMagnitude = 0.f;
+
+	UPROPERTY()
+	FVector DeathImpulse = FVector::ZeroVector;
 };
 
 
@@ -66,6 +71,7 @@ public:
 	float GetDebuffFrequency() const {return DebuffFrequency;}
 	float GetDebuffDuration() const {return DebuffDuration;}
 	TSharedPtr<FGameplayTag> GetDamageType() const { return DamageType; }
+	FVector GetDeathImpulse() const { return DeathImpulse; }
 	
 	
 	void SetIsCriticalHit(const bool bInIsCriticalHit) { bIsCriticalHit = bInIsCriticalHit; }
@@ -75,9 +81,10 @@ public:
 	void SetDebuffFrequency(const float InDebuffFrequency) { DebuffFrequency = InDebuffFrequency; }
 	void SetIsSuccessfulDebuff(const bool bInIsSuccessfulDebuff) {bIsSuccessfulDebuff = bInIsSuccessfulDebuff; }
 	void SetDamageType(const TSharedPtr<FGameplayTag>& InDebuffType) { DamageType = InDebuffType; }
+	void SetDeathImpulse(const FVector& InImpulse) { DeathImpulse = InImpulse; }
 	
 	/** Returns the actual struct used for serialization, subclasses must override this! */
-	virtual UScriptStruct* GetScriptStruct() const
+	virtual UScriptStruct* GetScriptStruct() const override
 	{
 		return StaticStruct();
 	}
@@ -119,6 +126,9 @@ protected:
 
 	UPROPERTY()
 	float DebuffDuration = 0.f;
+
+	UPROPERTY()
+	FVector DeathImpulse = FVector::ZeroVector;
 
 	TSharedPtr<FGameplayTag> DamageType;
 };

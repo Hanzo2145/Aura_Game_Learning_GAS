@@ -64,7 +64,7 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	UAnimMontage* GetHitReactMontage();
 
-	virtual void Die() = 0;
+	virtual void Die(const FVector& DeathImpulse) = 0;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	bool IsDead() const;
@@ -89,6 +89,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	ECharacterClass	GetCharacterClass();
+
 	
 	virtual FOnASCRegistered GetOnAscRegisteredDelegate() = 0;
 };
