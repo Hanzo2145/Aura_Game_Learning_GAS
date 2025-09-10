@@ -177,7 +177,6 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 			ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetAvatarActor);
 			if (CombatInterface)
 			{
-				FVector Impulse = UAuraAbilitySystemLibaray::GetDeathImpulse(Props.EffectContextHandle);
 				CombatInterface->Die(UAuraAbilitySystemLibaray::GetDeathImpulse(Props.EffectContextHandle));
 			}
 			SendXPEvent(Props);
@@ -187,6 +186,12 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 			FGameplayTagContainer TagContainer;
 			TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
 			Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
+
+			const FVector& KnockbackForce = UAuraAbilitySystemLibaray::GetKnockbackForce(Props.EffectContextHandle);
+			if (!KnockbackForce.IsNearlyZero(1.f))
+			{
+				Props.TargetCharacter->LaunchCharacter(KnockbackForce, true, true);
+			}
 		}
 		const bool bBlock = UAuraAbilitySystemLibaray::IsBlockedHit(Props.EffectContextHandle);
 		const bool bCriticalHit = UAuraAbilitySystemLibaray::IsCriticalHit(Props.EffectContextHandle);

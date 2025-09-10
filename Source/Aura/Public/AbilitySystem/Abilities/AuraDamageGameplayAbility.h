@@ -21,6 +21,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Damage")
 	void CauseDamage(AActor* TargetActor);
 
+	UFUNCTION(BlueprintPure, Category = "Damage")
 	FDamageEffectParams MakeDamageEffectParamsFromClassDefaults(AActor* TargetActor = nullptr) const;
 protected:
 	//This is the Gameplay Effect that we are going to use to Deal damage the Characters for now
@@ -46,7 +47,13 @@ protected:
 	float DebuffDuration = 5.f;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Damage")
-	float DeathImpulseMagnitude = 60.f;
+	float DeathImpulseMagnitude = 6000.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	float KnockbackForceMagnitude = 6000.f;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Damage")
+	float KnockbackChance = 0.f;
 
 	UFUNCTION(BlueprintPure)
 	FTaggedMontage GetRandomTaggedMontageFromArray(const TArray<FTaggedMontage>& TaggedMontages) const;
