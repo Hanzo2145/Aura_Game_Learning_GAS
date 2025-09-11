@@ -9,7 +9,7 @@
 #include "GameplayEffectExtension.h"
 #include "GameFramework/Character.h"
 #include "AuraGameplayTags.h"
-#include "AbilitySystem/AuraAbilitySystemLibaray.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Interaction/CombatInterface.h"
 #include "Interaction/PlayerInterface.h"
 #include "Player/AuraPlayerController.h"
@@ -177,7 +177,7 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 			ICombatInterface* CombatInterface = Cast<ICombatInterface>(Props.TargetAvatarActor);
 			if (CombatInterface)
 			{
-				CombatInterface->Die(UAuraAbilitySystemLibaray::GetDeathImpulse(Props.EffectContextHandle));
+				CombatInterface->Die(UAuraAbilitySystemLibrary::GetDeathImpulse(Props.EffectContextHandle));
 			}
 			SendXPEvent(Props);
 		}
@@ -187,16 +187,16 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 			TagContainer.AddTag(FAuraGameplayTags::Get().Effects_HitReact);
 			Props.TargetASC->TryActivateAbilitiesByTag(TagContainer);
 
-			const FVector& KnockbackForce = UAuraAbilitySystemLibaray::GetKnockbackForce(Props.EffectContextHandle);
+			const FVector& KnockbackForce = UAuraAbilitySystemLibrary::GetKnockbackForce(Props.EffectContextHandle);
 			if (!KnockbackForce.IsNearlyZero(1.f))
 			{
 				Props.TargetCharacter->LaunchCharacter(KnockbackForce, true, true);
 			}
 		}
-		const bool bBlock = UAuraAbilitySystemLibaray::IsBlockedHit(Props.EffectContextHandle);
-		const bool bCriticalHit = UAuraAbilitySystemLibaray::IsCriticalHit(Props.EffectContextHandle);
+		const bool bBlock = UAuraAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle);
+		const bool bCriticalHit = UAuraAbilitySystemLibrary::IsCriticalHit(Props.EffectContextHandle);
 		ShowFloatingText(Props, LocalIncomingDamage, bBlock, bCriticalHit);
-		if (UAuraAbilitySystemLibaray::GetIsSuccessfulDebuff(Props.EffectContextHandle))
+		if (UAuraAbilitySystemLibrary::GetIsSuccessfulDebuff(Props.EffectContextHandle))
 		{
 			Debuff(Props);
 		}
@@ -210,10 +210,10 @@ void UAuraAttributeSet::Debuff(const FEffectProperties& Props)
 	FGameplayEffectContextHandle EffectContext = Props.SourceASC->MakeEffectContext();
 	EffectContext.AddSourceObject(Props.SourceAvatarActor);
 
-	const FGameplayTag DamageType = UAuraAbilitySystemLibaray::GetDamageType(Props.EffectContextHandle);
-	const float DebuffDamage = UAuraAbilitySystemLibaray::GetDebuffDamage(Props.EffectContextHandle);
-	const float DebuffDuration = UAuraAbilitySystemLibaray::GetDebuffDuration(Props.EffectContextHandle);
-	const float DebuffFrequency = UAuraAbilitySystemLibaray::GetDebuffFrequency(Props.EffectContextHandle);
+	const FGameplayTag DamageType = UAuraAbilitySystemLibrary::GetDamageType(Props.EffectContextHandle);
+	const float DebuffDamage = UAuraAbilitySystemLibrary::GetDebuffDamage(Props.EffectContextHandle);
+	const float DebuffDuration = UAuraAbilitySystemLibrary::GetDebuffDuration(Props.EffectContextHandle);
+	const float DebuffFrequency = UAuraAbilitySystemLibrary::GetDebuffFrequency(Props.EffectContextHandle);
 
 	const FString DebuffName = FString::Printf(TEXT("DynamicDebuff_%s"), *DamageType.ToString());
 	UGameplayEffect* Effect = NewObject<UGameplayEffect>(GetTransientPackage(), FName(DebuffName));
@@ -319,7 +319,7 @@ void UAuraAttributeSet::SendXPEvent(const FEffectProperties& Props)
 	{
 		const int32 TargetLevel = ICombatInterface::Execute_GetPlayerLevel(Props.TargetAvatarActor);
 		const ECharacterClass TargetClass = ICombatInterface::Execute_GetCharacterClass(Props.TargetCharacter);
-		const int32 XPReward = UAuraAbilitySystemLibaray::GetXPRewardForClassAndLevel(Props.TargetCharacter, TargetClass, TargetLevel);
+		const int32 XPReward = UAuraAbilitySystemLibrary::GetXPRewardForClassAndLevel(Props.TargetCharacter, TargetClass, TargetLevel);
 
 		const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 		FGameplayEventData Payload;

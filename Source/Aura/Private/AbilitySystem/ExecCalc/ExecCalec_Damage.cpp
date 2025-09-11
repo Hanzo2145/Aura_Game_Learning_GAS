@@ -5,7 +5,7 @@
 #include "AbilitySystemComponent.h"
 #include "AuraAbilityTypes.h"
 #include "AuraGameplayTags.h"
-#include "AbilitySystem/AuraAbilitySystemLibaray.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
@@ -92,16 +92,16 @@ void UExecCalec_Damage::DetermineDebuff(const FGameplayEffectCustomExecutionPara
 			{
 				FGameplayEffectContextHandle ContextHandle = Spec.GetContext();
 
-				UAuraAbilitySystemLibaray::SetIsSuccessfulDebuff(ContextHandle, true);
-				UAuraAbilitySystemLibaray::SetDamageType(ContextHandle, DamageType);
+				UAuraAbilitySystemLibrary::SetIsSuccessfulDebuff(ContextHandle, true);
+				UAuraAbilitySystemLibrary::SetDamageType(ContextHandle, DamageType);
 
 				const float DebuffDamage = Spec.GetSetByCallerMagnitude(GameplayTags.Debuff_Damage, false, -1.f);
 				const float DebuffDuration = Spec.GetSetByCallerMagnitude(GameplayTags.Debuff_Duration, false, -1.f);
 				const float DebuffFrequency = Spec.GetSetByCallerMagnitude(GameplayTags.Debuff_Frequency, false, -1.f);
 
-				UAuraAbilitySystemLibaray::SetDebuffDamage(ContextHandle, DebuffDamage);
-				UAuraAbilitySystemLibaray::SetDebuffDuration(ContextHandle, DebuffDuration);
-				UAuraAbilitySystemLibaray::SetDebuffFrequency(ContextHandle, DebuffFrequency);
+				UAuraAbilitySystemLibrary::SetDebuffDamage(ContextHandle, DebuffDamage);
+				UAuraAbilitySystemLibrary::SetDebuffDuration(ContextHandle, DebuffDuration);
+				UAuraAbilitySystemLibrary::SetDebuffFrequency(ContextHandle, DebuffFrequency);
 			}
 		}
 	}
@@ -186,7 +186,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	Damage = bBlocked ? Damage / 2.f : Damage;
 
 	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
-	UAuraAbilitySystemLibaray::SetIsBlockedHit(EffectContextHandle, bBlocked);
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	
 	float TargetArmor = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, TargetArmor);
@@ -196,7 +196,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorPenetrationDef, EvaluationParameters, SourceArmorPenetration);
 	SourceArmorPenetration = FMath::Max<float>(SourceArmorPenetration, 0.f);
 
-	const UCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemLibaray::GetCharacterClassInfo(SourceAvatar);
+	const UCharacterClassInfo* CharacterClassInfo = UAuraAbilitySystemLibrary::GetCharacterClassInfo(SourceAvatar);
 	const FRealCurve* ArmorPenetrationCurve = CharacterClassInfo->DamageCalculationCoefficients->FindCurve(FName("ArmorPenetration"), FString());
 	const float ArmorPenetrationCoefficient = ArmorPenetrationCurve->Eval(SourcePlayerLevel);
 	
@@ -229,7 +229,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	const float EffectiveCriticalHitChance = SourceCriticalHitChance - TargetCriticalHitResistance * CriticalHitResistanceCoefficient;
 	const bool bCriticalHit = FMath::RandRange(1, 100) < EffectiveCriticalHitChance;
 	
-	UAuraAbilitySystemLibaray::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
+	UAuraAbilitySystemLibrary::SetIsCriticalHit(EffectContextHandle, bCriticalHit);
 	
 	// Double Damage plus a bonus if critical hit
 	Damage = bCriticalHit ? 2.f * Damage + SourceCriticalHitDamage : Damage;

@@ -3,7 +3,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "NiagaraFunctionLibrary.h"
-#include "AbilitySystem/AuraAbilitySystemLibaray.h"
+#include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Aura/Aura.h"
 #include "Components/AudioComponent.h"
 #include "Components/SphereComponent.h"
@@ -54,10 +54,12 @@ void AAuraProjectile::OnHit()
 
 void AAuraProjectile::Destroyed()
 {
-	if (!bHit && !HasAuthority())
+	if (LoopingSoundComponenet)
 	{
-		OnHit();
+		LoopingSoundComponenet->Stop();
+		LoopingSoundComponenet->DestroyComponent();
 	}
+	if (!bHit && !HasAuthority()) OnHit();
 	Super::Destroyed();
 }
 
@@ -66,7 +68,7 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 {
 	AActor* SourceAvatarActor = DamageEffectParams.SourceAbilitySystemComponent->GetAvatarActor();
 	if (SourceAvatarActor == OtherActor) return;
-	if (!UAuraAbilitySystemLibaray::IsNotFriend(SourceAvatarActor, OtherActor)) return;
+	if (!UAuraAbilitySystemLibrary::IsNotFriend(SourceAvatarActor, OtherActor)) return;
 	if (!bHit) OnHit();
 	
 	if (HasAuthority())
@@ -86,7 +88,7 @@ void AAuraProjectile::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, 
 				DamageEffectParams.KnockbackForce = KnockbackForce;
 			}
 			DamageEffectParams.TargetAbilitySystemComponent = TargetASC;
-			UAuraAbilitySystemLibaray::ApplyDamageEffect(DamageEffectParams);
+			UAuraAbilitySystemLibrary::ApplyDamageEffect(DamageEffectParams);
 		}
 
 		Destroy();

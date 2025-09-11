@@ -6,7 +6,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "UI/HUD/AuraHUD.h"
-#include "AuraAbilitySystemLibaray.generated.h"
+#include "AuraAbilitySystemLibrary.generated.h"
 
 struct FDamageEffectParams;
 class UOverlayWidgetController;
@@ -20,7 +20,7 @@ struct FWidgetControllerParams;
  * 
  */
 UCLASS()
-class AURA_API UAuraAbilitySystemLibaray : public UBlueprintFunctionLibrary
+class AURA_API UAuraAbilitySystemLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 	
@@ -112,6 +112,12 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Mechanics")
 	static int32 GetXPRewardForClassAndLevel(const UObject* WorldContextObject, const ECharacterClass CharacterClass, const int32 Level);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static TArray<FRotator> EvenlySpacedRotators(const FVector& Forward, const FVector& Axis, float Spread, int32 NumRotators);
+
+	UFUNCTION(BlueprintPure, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static TArray<FVector> EvenlyRotatedVectors(const FVector& Forward, const FVector& Axis, float Spread, int32 NumVectors);
 
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
 	static FGameplayEffectContextHandle ApplyDamageEffect(const FDamageEffectParams& DamageEffectParams);

@@ -8,6 +8,7 @@
 #include "AuraPlayerController.generated.h"
 
 
+class UNiagaraSystem;
 class UDamageTextComponent;
 //Declrations
 class UAuraInputConfig;
@@ -68,10 +69,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 	void Move(const FInputActionValue& InputActionValue);
-	
+
 	UPROPERTY(EditAnywhere, Category = "Input")
-	TObjectPtr<UInputAction> ZoomAction;
-	void Zoom(const FInputActionValue& InputActionValue);
+	TObjectPtr<UInputAction> ShiftAction;
 
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UAuraInputConfig> InputConfig;
@@ -80,7 +80,10 @@ private:
 	void AbilityInputTagPressed(FGameplayTag InputTag);
 	void AbilityInputTagReleased(FGameplayTag InputTag);
 	void AbilityInputTagHeld(FGameplayTag InputTag);
-
+	
+	void ShiftPressed() {bShitKeyDown = true;}
+	void ShiftReleased() {bShitKeyDown = false;}
+	bool bShitKeyDown = false;
 		
 	FVector CachedDestination = FVector::ZeroVector;
 	float FollowTime = 0.f;
@@ -93,6 +96,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
+
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UNiagaraSystem> ClickNiagaraSystem;
 
 	void AutoRun();
 };

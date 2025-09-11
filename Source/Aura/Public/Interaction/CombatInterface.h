@@ -90,6 +90,8 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	ECharacterClass	GetCharacterClass();
 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Combat")
+	void SetInShockLoop(bool bInLoop);
 	
 	virtual FOnASCRegistered GetOnAscRegisteredDelegate() = 0;
 };
