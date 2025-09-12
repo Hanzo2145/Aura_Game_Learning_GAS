@@ -21,8 +21,8 @@ class AURA_API AAuraEnemy : public AAruraCharacterBase, public IEnemyInterface
 public:
 	AAuraEnemy();
 	/* Enemy Interface */
-	virtual void HighLightActor() override;
-	virtual void UnHighLightActor() override;
+	virtual void HighlightActor() override;
+	virtual void UnHighlightActor() override;
 	virtual void SetCombatTarget_Implementation(AActor* InCombatTarget) override;
 	virtual AActor* GetCombatTarget_Implementation() const override;
 	/* end Enemy Interface */

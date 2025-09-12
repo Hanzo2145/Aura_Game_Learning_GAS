@@ -51,9 +51,10 @@ private:
 	/**
 	 * Variables
 	 */
-	TScriptInterface<IEnemyInterface> LastActor;
-	TScriptInterface<IEnemyInterface> ThisActor;
+	IEnemyInterface* LastActor;
+	IEnemyInterface* ThisActor;
 	FHitResult CursorHit;
+	
 	UPROPERTY()
 	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
