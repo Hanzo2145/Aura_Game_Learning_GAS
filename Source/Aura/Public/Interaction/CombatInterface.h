@@ -92,6 +92,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable, Category = "Combat")
 	void SetInShockLoop(bool bInLoop);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	USkeletalMeshComponent* GetWeapon();
 	
 	virtual FOnASCRegistered GetOnAscRegisteredDelegate() = 0;
 };

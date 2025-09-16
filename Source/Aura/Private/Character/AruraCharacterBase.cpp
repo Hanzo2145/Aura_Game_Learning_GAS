@@ -174,6 +174,11 @@ FOnASCRegistered AAruraCharacterBase::GetOnAscRegisteredDelegate()
 	return OnAscRegistered;
 }
 
+USkeletalMeshComponent* AAruraCharacterBase::GetWeapon_Implementation()
+{
+	return Weapon;
+}
+
 
 void AAruraCharacterBase::Dissolve()
 {
