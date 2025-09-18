@@ -23,6 +23,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Damage")
 	FDamageEffectParams MakeDamageEffectParamsFromClassDefaults(AActor* TargetActor = nullptr) const;
+
+	UFUNCTION(BlueprintPure, BlueprintCallable, Category = "Damage")
+	float GetDamageAtLevel() const;
 protected:
 	//This is the Gameplay Effect that we are going to use to Deal damage the Characters for now
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Projectile")
