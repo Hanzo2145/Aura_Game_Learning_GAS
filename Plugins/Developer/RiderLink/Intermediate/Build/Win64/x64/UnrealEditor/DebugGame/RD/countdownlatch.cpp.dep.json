@@ -1,10 +1,10 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.cpp",
+        "Source": "d:\\ueprojects\\aura-clean\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.cpp",
         "ProvidedModule": "",
         "Includes": [
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\rd\\definitions.h",
+            "d:\\ueprojects\\aura-clean\\plugins\\developer\\riderlink\\intermediate\\build\\win64\\x64\\unrealeditor\\debuggame\\rd\\definitions.h",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\chrono",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\yvals_core.h",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\vcruntime.h",
@@ -105,7 +105,7 @@
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\atomic",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\xthreads.h",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\xfilesystem_abi.h",
-            "d:\\ueprojects\\aura\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.hpp",
+            "d:\\ueprojects\\aura-clean\\plugins\\developer\\riderlink\\source\\rd\\thirdparty\\countdownlatch\\countdownlatch.hpp",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\cinttypes",
             "c:\\program files (x86)\\windows kits\\10\\include\\10.0.26100.0\\ucrt\\inttypes.h",
             "d:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.38.33130\\include\\mutex",

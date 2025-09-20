@@ -24,6 +24,8 @@ public:
 	AAuraCharacter();
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
+	virtual void OnRep_Stunned() override;
+	virtual void OnRep_Burned() override;
 
 	/* Combat Interface*/
 	virtual int32 GetPlayerLevel_Implementation() override;
@@ -51,6 +53,13 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UNiagaraComponent> LevelUpNiagaraComponent;
+
+protected:
+	/*
+	 * Functions Declarations
+	 */
+	virtual void StunTagChanged(const FGameplayTag CallbackTag, int32 NewCount) override;
+	
 
 private:
 	virtual void InitAbilityActorInfo() override;

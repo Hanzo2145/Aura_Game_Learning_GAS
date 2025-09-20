@@ -12,7 +12,8 @@ class UNiagaraSystem;
 class UAnimMontage;
 class UAbilitySystemComponent;
 
-DECLARE_MULTICAST_DELEGATE_OneParam(FOnASCRegistered, UAbilitySystemComponent*);;
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnASCRegistered, UAbilitySystemComponent*);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeathSignature, AActor*, DeadActor);
 USTRUCT(BlueprintType)
 struct FTaggedMontage
 {
@@ -59,8 +60,9 @@ public:
 	void UpdatingFacingTarget(const FVector& target);
 
 	virtual void SetSpringArmlength(float SpringArmlength);
-	
 
+	virtual FOnDeathSignature& GetOnDeathDelegate() = 0;
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	UAnimMontage* GetHitReactMontage();
 
@@ -95,6 +97,12 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	USkeletalMeshComponent* GetWeapon();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	bool IsBeingShocked() const;
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void SetIsBeingShocked(bool bInShock);
 	
-	virtual FOnASCRegistered GetOnAscRegisteredDelegate() = 0;
+	virtual FOnASCRegistered& GetOnAscRegisteredDelegate() = 0;
 };

@@ -1,8 +1,7 @@
 // Copyright Anas Hanzo Al-Juboori
 
 
-#include "AbilitySystem/Abilities/Debuff/DebuffNiagaraComponent.h"
-
+#include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
 #include "Interaction/CombatInterface.h"

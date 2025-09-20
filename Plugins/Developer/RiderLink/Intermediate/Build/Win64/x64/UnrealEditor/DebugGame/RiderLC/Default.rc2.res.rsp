@@ -84,5 +84,5 @@
 /DPROJECT_COMPANY_NAME="Anas Hanzo Al-Juboori"
 /DPROJECT_COPYRIGHT_STRING="Copyright Anas Hanzo Al-Juboori"
 /DPROJECT_PRODUCT_IDENTIFIER=Aura
-/fo "D:\UEProjects\Aura\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLC\Default.rc2.res"
+/fo "D:\UEProjects\Aura-clean\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderLC\Default.rc2.res"
 "..\Build\Windows\Resources\Default.rc2"
