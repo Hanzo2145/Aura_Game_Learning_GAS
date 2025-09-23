@@ -86,8 +86,17 @@ public:
 	//Abilities.Lightning
 	FGameplayTag Abilities_Lightning_Electrocute;
 
+	//Abilities.Arcane
+	FGameplayTag Abilities_Arcane_ArcaneShards;
+
 	//Abilities.Cooldown
 	FGameplayTag Cooldown_Fire_FireBolt;
+	FGameplayTag Cooldown_Arcane_ArcaneShards;
+
+	//Passive abilities
+	FGameplayTag Abilities_Passive_HaloOfProtection;
+	FGameplayTag Abilities_Passive_LifeSiphon;
+	FGameplayTag Abilities_Passive_ManaSiphon;
 
 	
 	//Combat Socket Tags
@@ -124,8 +133,6 @@ public:
 	FGameplayTag Attributes_Resistance_Lightning;
 	FGameplayTag Attributes_Resistance_Arcane;
 	FGameplayTag Attributes_Resistance_Physical;
-	
-
 	
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;

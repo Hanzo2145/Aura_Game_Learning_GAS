@@ -10,6 +10,7 @@
 #include "AruraCharacterBase.generated.h"
 
 
+class UPassiveNiagaraComponent;
 class UDebuffNiagaraComponent;
 enum class ECharacterClass : uint8;
 class UNiagaraSystem;
@@ -27,6 +28,7 @@ class AURA_API AAruraCharacterBase : public ACharacter, public IAbilitySystemInt
 public:
 	/*Functions Declarations*/
 	AAruraCharacterBase();
+	virtual void Tick(float DeltaTime) override;
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
@@ -169,5 +171,17 @@ private:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TObjectPtr<UAnimMontage> HitReactMontage;
+
+	UPROPERTY(VisibleAnywhere, Category = "Effects")
+	TObjectPtr<UPassiveNiagaraComponent> HaloOfProtectionNiagaraComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = "Effects")
+	TObjectPtr<UPassiveNiagaraComponent> LifeSiphonNiagaraComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = "Effects")
+	TObjectPtr<UPassiveNiagaraComponent> ManaSiphonNiagaraComponent;
+
+	UPROPERTY(VisibleAnywhere, Category = "Effects")
+	TObjectPtr<USceneComponent> EffectAttachComponent;
 	
 };
