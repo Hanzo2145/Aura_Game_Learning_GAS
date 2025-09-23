@@ -9,6 +9,7 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
+#include "Kismet/GameplayStatics.h"
 
 struct AuraDamageStatics
 {
@@ -112,6 +113,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	TMap<FGameplayTag, FGameplayEffectAttributeCaptureDefinition> TagsToCaptureDefs;
 
 	const FAuraGameplayTags& Tags = FAuraGameplayTags::Get();
+	
 		
 	//Connecting the Tags to the Attributes to capture using a map
 	TagsToCaptureDefs.Add(Tags.Attributes_Secondary_Armor, DamageStatics().ArmorDef);
@@ -147,6 +149,7 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	const FGameplayEffectSpec& Spec = ExecutionParams.GetOwningSpec();
 	const FGameplayTagContainer* SourceTags = Spec.CapturedSourceTags.GetAggregatedTags();
 	const FGameplayTagContainer* TargetTags = Spec.CapturedTargetTags.GetAggregatedTags();
+	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
 	
 	FAggregatorEvaluateParameters EvaluationParameters;
 	EvaluationParameters.SourceTags = SourceTags;
@@ -159,23 +162,59 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 	float Damage = 0.f;
 	for (const TTuple<FGameplayTag, FGameplayTag>& Pair : FAuraGameplayTags::Get().DamageTypesToResistances)
 	{
+		const FGameplayTag DamageTypeTag = Pair.Key;
 		const FGameplayTag ResistanceTag = Pair.Value;
 		
 		checkf(TagsToCaptureDefs.Contains(ResistanceTag), TEXT("TagsToCaptureDefs Doesn't Contain Tag: [%s] in ExecCalc_Damage"), *ResistanceTag.ToString());
 		const FGameplayEffectAttributeCaptureDefinition CaptureDef = TagsToCaptureDefs[ResistanceTag];
 
 		float DamageTypeValue = Spec.GetSetByCallerMagnitude(Pair.Key, false);
+		if (DamageTypeValue <= 0.f)
+		{
+			continue;
+		}
 		
 		float Resistance = 0.f;
 		ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(CaptureDef, EvaluationParameters, Resistance);
 		Resistance = FMath::Clamp(Resistance,0.f, 100.f);
 		
 		DamageTypeValue *= (100.f - Resistance) / 100.f;
+
+		if (UAuraAbilitySystemLibrary::IsRadialDamage(EffectContextHandle))
+		{
+			/*
+			 * 1. Override TakeDamage in AuraCharacterBase *
+			 * 2. Create Delegate OnDamageDelegate, broadcast Damage received in TakeDamage *
+			 * 3. bind to OnDamageDelegate on the victim here. *
+			 * 4. call ApplyRadialDamage with falloff to cause damage (this will result in take damage being called on the victim
+			 * which will then broadcast OnDamageDelegate
+			 * 5. in Lambda, Set DamageTypeValue to the damage received From the broadcast
+			 */
+			if (ICombatInterface* CombatInterface = Cast<ICombatInterface>(TargetAvatar))
+			{
+				CombatInterface->GetOnDamageSignature().AddLambda([&] (float DamageAmount)
+				{
+					DamageTypeValue = DamageAmount;
+				});
+				UGameplayStatics::ApplyRadialDamageWithFalloff(TargetAvatar,
+					DamageTypeValue,
+					0.f,
+					UAuraAbilitySystemLibrary::GetRadialDamageOrigin(EffectContextHandle),
+					UAuraAbilitySystemLibrary::GetRadialDamageInnerRadius(EffectContextHandle),
+					UAuraAbilitySystemLibrary::GetRadialDamageOuterRadius(EffectContextHandle),
+					1.f,
+					UDamageType::StaticClass(),
+					TArray<AActor*>(),
+					SourceAvatar,
+					SourceAvatar->GetInstigatorController());
+			}
+		}
+		
 		Damage += DamageTypeValue;
 	}
 
-	// Capture Block Chance on target, and determine if there was a successful Block
 	
+	// Capture Block Chance on target, and determine if there was a successful Block
 	float TargetBlockChance = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().BlockChanceDef, EvaluationParameters, TargetBlockChance);
 	TargetBlockChance = FMath::Max<float>(TargetBlockChance, 0.f);
@@ -184,10 +223,8 @@ void UExecCalec_Damage::Execute_Implementation(const FGameplayEffectCustomExecut
 
 	// if block, Halve the damage.
 	Damage = bBlocked ? Damage / 2.f : Damage;
-
-	FGameplayEffectContextHandle EffectContextHandle = Spec.GetContext();
-	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	
+	UAuraAbilitySystemLibrary::SetIsBlockedHit(EffectContextHandle, bBlocked);
 	float TargetArmor = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(DamageStatics().ArmorDef, EvaluationParameters, TargetArmor);
 	TargetArmor = FMath::Max<float>(TargetArmor, 0.f);

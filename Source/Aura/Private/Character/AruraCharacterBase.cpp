@@ -65,6 +65,13 @@ void AAruraCharacterBase::GetLifetimeReplicatedProps(TArray<class FLifetimePrope
 	DOREPLIFETIME(AAruraCharacterBase, bIsBeingShocked);
 }
 
+float AAruraCharacterBase::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
+{
+	const float DamageTaken =  Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	OnDamageDelegate.Broadcast(DamageTaken);
+	return DamageTaken;
+}
+
 UAbilitySystemComponent* AAruraCharacterBase::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
@@ -238,6 +245,10 @@ bool AAruraCharacterBase::IsBeingShocked_Implementation() const
 	return bIsBeingShocked;
 }
 
+FOnDamageSignature& AAruraCharacterBase::GetOnDamageSignature()
+{
+	return OnDamageDelegate;
+}
 
 void AAruraCharacterBase::Dissolve()
 {
