@@ -22,7 +22,7 @@ public:
 	 * <Function Declarations 
 	 */
 	AAuraProjectile();
-	virtual void Destroyed() override;
+	
 	
 	/*
 	 * <Variables Declaration
@@ -39,21 +39,27 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
+	
+	UFUNCTION(BlueprintCallable)
 	void OnHit();
 
+	virtual void Destroyed() override;
+
 	UFUNCTION()
-	void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	virtual void OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+
+	bool IsValidOverlap(AActor* OtherActor);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<USphereComponent> Sphere;
+
+	// this bool will check to see if we spawned an effect and played the sound.
+	bool bHit = false;
 	
 private:
 	/*
 	 * <Variables Declaration
 	 */
-	
-	
-
 	// Niagara System For when the PLayer Hit Something
 	UPROPERTY(EditAnywhere,  Category = Projectile)
 	TObjectPtr<UNiagaraSystem> ImpactEffect;
@@ -61,9 +67,6 @@ private:
 	//Sound For when the Player Hit something
 	UPROPERTY(EditAnywhere,  Category = Projectile)
 	TObjectPtr<USoundBase> ImpactSound;
-
-	// this bool will check to see if we spawned an effect and played the sound.
-	bool bHit = false;
 
 	//Play Sound when the Projectile Is created and it is looping.
 	UPROPERTY(EditAnywhere,  Category = Projectile)

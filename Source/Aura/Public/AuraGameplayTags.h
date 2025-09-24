@@ -82,6 +82,7 @@ public:
 
 	//Abilities.Fire
 	FGameplayTag Abilities_Fire_FireBolt;
+	FGameplayTag Abilities_Fire_FireBlast;
 
 	//Abilities.Lightning
 	FGameplayTag Abilities_Lightning_Electrocute;
@@ -90,9 +91,15 @@ public:
 	FGameplayTag Abilities_Arcane_ArcaneShards;
 
 	//Abilities.Cooldown
+	//Fire
 	FGameplayTag Cooldown_Fire_FireBolt;
+	FGameplayTag Cooldown_Fire_FireBlast;
+
+	//Arcane
 	FGameplayTag Cooldown_Arcane_ArcaneShards;
 
+	//Lightning
+	
 	//Passive abilities
 	FGameplayTag Abilities_Passive_HaloOfProtection;
 	FGameplayTag Abilities_Passive_LifeSiphon;

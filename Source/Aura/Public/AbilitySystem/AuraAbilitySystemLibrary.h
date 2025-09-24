@@ -165,4 +165,20 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
 	static FGameplayEffectContextHandle ApplyDamageEffect(const FDamageEffectParams& DamageEffectParams);
+
+	/*
+	 * Damage Effect Params
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static void SetIsRadialDamageEffectParams(UPARAM(ref) FDamageEffectParams& DamageEffectParams, bool bInIsRadial, float InnerRadius, float OuterRadius, FVector Origin);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static void SetKnockbackDirection(UPARAM(ref) FDamageEffectParams& DamageEffectParams, FVector KnockbackDirection, float Magnitude = 0.f);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static void SetDeathImpulseDirection(UPARAM(ref) FDamageEffectParams& DamageEffectParams, FVector ImpulseDirection, float Magnitude = 0.f);
+
+	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Gameplay Mechanics")
+	static void SetTargetEffectParamsASC(UPARAM(ref) FDamageEffectParams& DamageEffectParams, UAbilitySystemComponent* InASC);
+	
 };
