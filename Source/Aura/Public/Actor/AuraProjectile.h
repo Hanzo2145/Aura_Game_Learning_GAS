@@ -41,7 +41,7 @@ protected:
 	virtual void BeginPlay() override;
 	
 	UFUNCTION(BlueprintCallable)
-	void OnHit();
+	virtual void OnHit();
 
 	virtual void Destroyed() override;
 
@@ -55,7 +55,10 @@ protected:
 
 	// this bool will check to see if we spawned an effect and played the sound.
 	bool bHit = false;
-	
+
+	//this Variable will allow us to remove the sound once we hit something or the actor gets destroyed 
+	UPROPERTY()
+	TObjectPtr<UAudioComponent> LoopingSoundComponenet;
 private:
 	/*
 	 * <Variables Declaration
@@ -71,11 +74,7 @@ private:
 	//Play Sound when the Projectile Is created and it is looping.
 	UPROPERTY(EditAnywhere,  Category = Projectile)
 	TObjectPtr<USoundBase> LoopingSound;
-
-	//this Variable will allow us to remove the sound once we hit something or the actor gets destroyed 
-	UPROPERTY()
-	TObjectPtr<UAudioComponent> LoopingSoundComponenet;
-
+	
 	//float to set the life span of the projectile.
 	UPROPERTY(EditAnywhere,  Category = Projectile)
 	float LifeSpan = 15.f;

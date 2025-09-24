@@ -52,7 +52,11 @@ void AAuraProjectile::OnHit()
 {
 	UGameplayStatics::PlaySoundAtLocation(this, ImpactSound, GetActorLocation(), FRotator::ZeroRotator);
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(this, ImpactEffect, GetActorLocation());
-	if (LoopingSoundComponenet) LoopingSoundComponenet->Stop();
+	if (LoopingSoundComponenet)
+	{
+		LoopingSoundComponenet->Stop();
+		LoopingSoundComponenet->DestroyComponent();
+	}
 	bHit = true;
 }
 

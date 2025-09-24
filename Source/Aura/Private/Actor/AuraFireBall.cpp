@@ -2,9 +2,11 @@
 
 
 #include "Actor/AuraFireBall.h"
-
 #include "AbilitySystemBlueprintLibrary.h"
+#include "AuraGameplayTags.h"
 #include "AbilitySystem/AuraAbilitySystemLibrary.h"
+#include "Components/AudioComponent.h"
+#include "GameplayCueManager.h"
 
 void AAuraFireBall::BeginPlay()
 {

@@ -143,6 +143,9 @@ public:
 	
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToResistances;
 	TMap<FGameplayTag, FGameplayTag> DamageTypesToDebuffs;
+
+	//Native Cue Tags
+	FGameplayTag GameplayCue_FireBlast;
 	
 private:
 	static FAuraGameplayTags GameplayTags;
