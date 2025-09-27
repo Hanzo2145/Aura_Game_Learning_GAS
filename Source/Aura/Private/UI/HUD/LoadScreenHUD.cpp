@@ -16,8 +16,6 @@ void ALoadScreenHUD::BeginPlay()
 
 	LoadScreenWidget = CreateWidget<ULoadScreenWidget>(GetWorld(), LoadScreenWidgetClass);
 	LoadScreenWidget->AddToViewport();
-	UWidgetBlueprintLibrary::SetInputMode_UIOnlyEx(GetOwningPlayerController(), LoadScreenWidget);
-	GetOwningPlayerController()->bShowMouseCursor = true;
 	LoadScreenWidget->BlueprintInitializedWidget();
 	
 	LoadScreenViewModel->LoadData();

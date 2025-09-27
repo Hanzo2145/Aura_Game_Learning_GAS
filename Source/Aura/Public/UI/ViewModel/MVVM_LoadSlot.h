@@ -30,9 +30,6 @@ public:
 
 	UPROPERTY()
 	TEnumAsByte<ESaveSlotStatus> SlotStatus;
-
-	UPROPERTY()
-	FString LoadSlotName;
 	
 	UPROPERTY()
 	int32 SlotIndex;
@@ -49,11 +46,18 @@ public:
 	void SetMapName(FString InMapName);
 	FString GetMapName() const {return MapName;};
 
+	//LoadSlotName
+	void SetLoadSlotName(FString InLoadSlotName);
+	FString GetLoadSlotName() const {return LoadSlotName;};
+
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, FieldNotify, Setter, Getter, meta=(AllowPrivateAccess = "true"))
 	FString PlayerName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, FieldNotify, Setter, Getter, meta=(AllowPrivateAccess = "true"))
 	FString MapName;
-	
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, FieldNotify, Setter, Getter, meta=(AllowPrivateAccess = "true"))
+	FString LoadSlotName;
 };
