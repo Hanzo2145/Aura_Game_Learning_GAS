@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerStart.h"
+#include "Interaction/SaveInterface.h"
 #include "Checkpoint.generated.h"
 
 class USphereComponent;
@@ -12,13 +13,20 @@ class UMaterialInstanceDynamic;
  * 
  */
 UCLASS()
-class AURA_API ACheckpoint : public APlayerStart
+class AURA_API ACheckpoint : public APlayerStart, public ISaveInterface
 {
 	GENERATED_BODY()
 
 public:
+	/*<SaveInterface>*/
+	virtual bool ShouldLoadTransform_Implementation() override{ return false; }
+	virtual void LoadActor_Implementation() override;
+		
+	/*<SaveInterface/>*/
 	ACheckpoint(const FObjectInitializer& ObjectInitializer);
-	
+
+	UPROPERTY(BlueprintReadOnly, SaveGame)
+	bool bReached = false;
 protected:
 	virtual void BeginPlay() override;
 	

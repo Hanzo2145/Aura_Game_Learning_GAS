@@ -18,7 +18,6 @@
 #include "AbilitySystem/AuraAttributeSet.h"
 #include "AbilitySystem/Data/AbilityInfo.h"
 #include "AbilitySystem/Debuff/DebuffNiagaraComponent.h"
-#include "Game/AuraGameInstance.h"
 #include "Game/AuraGameModeBase.h"
 #include "Game/LoadScreenSaveGame.h"
 #include "Kismet/GameplayStatics.h"
@@ -65,6 +64,11 @@ void AAuraCharacter::PossessedBy(AController* NewController)
 	// Init Ability Actor Info for the Server
 	InitAbilityActorInfo();
 	LoadProggess();
+
+	if (AAuraGameModeBase* AuraGameMode = Cast<AAuraGameModeBase>(UGameplayStatics::GetGameMode(this)))
+	{
+		AuraGameMode->LoadWorldState(GetWorld());
+	}
 }
 
 void AAuraCharacter::LoadProggess()
@@ -280,7 +284,7 @@ void AAuraCharacter::SaveProgress_Implementation(const FName& CheckpointTag)
 			UAbilityInfo* AbilityInfo = UAuraAbilitySystemLibrary::GetAbilityInfo(this);
 			FAuraAbilityInfo Info = AbilityInfo->FindAbilityInfoForTag(AbilityTag);
 			
-			FSaveAbility SavedAbility;
+			FSavedAbility SavedAbility;
 			SavedAbility.GameplayAbility = Info.Ability;
 			SavedAbility.AbilityLevel = AbilitySpec.Level;
 			SavedAbility.AbilitySlot = AuraASC->GetSlotFromAbilityTag(AbilityTag);

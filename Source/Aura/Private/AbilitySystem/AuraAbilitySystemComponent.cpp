@@ -45,7 +45,7 @@ void UAuraAbilitySystemComponent::AddCharacterPassiveAbilities(const TArray<TSub
 
 void UAuraAbilitySystemComponent::AddCharacterAbilitiesFromSaveData(ULoadScreenSaveGame* SaveData)
 {
-	for (const FSaveAbility& Data : SaveData->SaveAbilities)
+	for (const FSavedAbility& Data : SaveData->SaveAbilities)
 	{
 		const TSubclassOf<UGameplayAbility> LoadedAbilityClass = Data.GameplayAbility;
 
