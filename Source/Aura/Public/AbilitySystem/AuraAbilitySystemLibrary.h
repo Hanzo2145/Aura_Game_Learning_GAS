@@ -8,6 +8,7 @@
 #include "UI/HUD/AuraHUD.h"
 #include "AuraAbilitySystemLibrary.generated.h"
 
+class ULoadScreenSaveGame;
 struct FDamageEffectParams;
 class UOverlayWidgetController;
 class UAbilitySystemComponent;
@@ -48,6 +49,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static void InitializeDefaultAttributes(const UObject* WorldContextObject, ECharacterClass CharacterClass, float Level, UAbilitySystemComponent* ASC);
 
+	static void InitializeDefaultAttributesFromSaveData(const UObject* WorldContextObject, UAbilitySystemComponent* ASC, ULoadScreenSaveGame* SaveGame);
+	
 	UFUNCTION(BlueprintCallable, Category = "Aura Ability System Libaray | Character Class Defualt")
 	static void GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* ASC, ECharacterClass CharacterClass);
 

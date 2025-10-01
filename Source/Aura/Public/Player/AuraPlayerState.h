@@ -12,6 +12,7 @@ struct FAuraLevelUpInfo;
 class UAbilitySystemComponent;
 class UAttributeSet;
 DECLARE_MULTICAST_DELEGATE_OneParam(FOnPlayerStateChange, int32 /*StateValue*/);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnLevelChanged, int32 /*StateValue*/, bool /*bLevelup*/);
 /**
  * 
  */
@@ -27,7 +28,7 @@ public:
 	
 	
 	FOnPlayerStateChange OnXPChangedDelegate;
-	FOnPlayerStateChange OnLevelChangedDelegate;
+	FOnLevelChanged OnLevelChangedDelegate;
 	FOnPlayerStateChange OnAttributePointsChangedDelegate;
 	FOnPlayerStateChange OnSpellPointsChangedDelegate;
 
@@ -39,6 +40,8 @@ public:
 
 	void SetXP(int32 InXP);
 	void SetLevel(int32 InLevel);
+	void SetAttributePoints(int32 InAttributePoints);
+	void SetSpellPoints(int32 InSpellPoints);
 	
 	void AddToXP(int32 InXP);
 	void AddToLevel(int32 InLevel);
@@ -65,7 +68,7 @@ private:
 	void OnRep_Level(int32 OldLevel);
 
 	UPROPERTY(VisibleAnywhere, ReplicatedUsing=OnRep_XP)
-	int32 XP = 1;
+	int32 XP = 0;
 
 	UFUNCTION()
 	void OnRep_XP(int32 OldXP);
