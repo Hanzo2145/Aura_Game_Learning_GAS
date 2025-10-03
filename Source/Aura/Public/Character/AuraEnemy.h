@@ -6,23 +6,29 @@
 #include "Character/AruraCharacterBase.h"
 #include "UI/WidgetController/OverlayWidgetController.h"
 #include "Interaction/EnemyInterface.h"
+#include "Interaction/HighlightInterface.h"
 #include "AuraEnemy.generated.h"
 
 class AAuraAIController;
 class UWidgetComponent;
 class UBehaviorTree;
+
 /**
  * 
  */
 UCLASS()
-class AURA_API AAuraEnemy : public AAruraCharacterBase, public IEnemyInterface
+class AURA_API AAuraEnemy : public AAruraCharacterBase, public IEnemyInterface, public IHighlightInterface
 {
 	GENERATED_BODY()
 public:
 	AAuraEnemy();
+	/* Highlight Interface */
+	virtual void HighlightActor_Implementation() override;
+	virtual void UnHighlightActor_Implementation() override;
+	virtual void SetMoveToLocation_Implementation(FVector& OutDestination) override;
+	/* end Highlight Interface */
+	
 	/* Enemy Interface */
-	virtual void HighlightActor() override;
-	virtual void UnHighlightActor() override;
 	virtual void SetCombatTarget_Implementation(AActor* InCombatTarget) override;
 	virtual AActor* GetCombatTarget_Implementation() const override;
 	/* end Enemy Interface */
@@ -33,7 +39,7 @@ public:
 	void HitReactTagChanged(const FGameplayTag CallBackTag, int32 NewCount);
 	virtual void Die(const FVector& DeathImpulse) override;
 	virtual void PossessedBy(AController* NewController) override;
-
+	void SetEnemyLevel(int32 InLevel) { Level = InLevel; }
 	
 	/*
 	 * Variables Declarations 
@@ -74,7 +80,7 @@ protected:
 	 */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	int32 Level = 1;
-
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character Class Defaults")
 	TObjectPtr<UWidgetComponent> HealthBar;
 

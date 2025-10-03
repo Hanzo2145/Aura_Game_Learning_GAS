@@ -62,6 +62,8 @@ public:
 	UFUNCTION(NetMulticast, reliable)
 	virtual void MulticastHandleDeath(const FVector& DeathImpulse);
 
+	void SetCharacterClass(ECharacterClass InClass) { CharacterClass = InClass; }
+
 	/*Variables Declarations*/
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
