@@ -39,7 +39,7 @@ struct FSavedAbility
 	FGameplayTag AbilityType = FGameplayTag();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="ClassDefault")
-	int32 AbilityLevel = 0;
+	int32 AbilityLevel = 1;
 	
 };
 

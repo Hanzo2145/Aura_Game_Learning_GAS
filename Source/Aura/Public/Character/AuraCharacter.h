@@ -30,7 +30,13 @@ public:
 	/* Combat Interface*/
 	virtual int32 GetPlayerLevel_Implementation() override;
 	virtual void SetSpringArmlength(float SpringArmlength) override;
+	virtual void Die(const FVector& DeathImpulse) override;
 	/* /Combat Interface*/
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category= "Combat" )
+	float DeathTime = 5.f;
+
+	FTimerHandle DeathTimer;
 
 	/* player Interface*/
 	virtual void AddToXP_Implementation(int32 InXP) override;

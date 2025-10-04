@@ -35,6 +35,10 @@ class AURA_API AAuraEffectActor : public AActor
 public:	
 	AAuraEffectActor();
 
+	UFUNCTION(BlueprintCallable, Category="Aura Effect Actor | Spawning")
+	void SetEffectActorLevel(float InLevel);
+	virtual void Tick(float DeltaTime) override;
+
 protected:
 	/**
 	 * Functions Declarations
@@ -60,7 +64,35 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Applied Effects")
 	bool bApplyEffectsToEnemies = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	bool bRotate = false;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	float RotationRate = 45.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	bool bSinusoidalMovement = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	float SineAmplitude = 1.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	float SinePeriodConstant = 1.f; // 2 * Pie
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Pickup Movement")
+	FVector InitialLocation;
+
+	UPROPERTY(BlueprintReadWrite)
+	FVector CalculatedLocation;
+
+	UPROPERTY(BlueprintReadWrite)
+	FRotator CalculatedRotation;
+
+	UFUNCTION(BlueprintCallable)
+	void StartSinusoidalMovement();
+
+	UFUNCTION(BlueprintCallable)
+	void StartRotation();
 
 	//Gameplay Effect Classes Variables 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Applied Effects")
@@ -89,5 +121,11 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Applied Effects")
 	float ActorLovel = 1.f;
+
+private:
+
+	float RunningTime = 0.f;
+
+	void ItemMovement(float DeltaTime);
 
 };

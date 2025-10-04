@@ -136,7 +136,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Effects")
 	USoundBase* DeathSound;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly)
 	bool bDead = false;
 
 	// Dissolve Effects
