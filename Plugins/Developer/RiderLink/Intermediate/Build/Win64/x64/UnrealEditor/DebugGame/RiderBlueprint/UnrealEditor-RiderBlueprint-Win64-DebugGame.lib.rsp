@@ -6,6 +6,6 @@
 /NAME:"UnrealEditor-RiderBlueprint-Win64-DebugGame.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"D:\UEProjects\Aura-clean\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\Module.RiderBlueprint.cpp.obj"
-"D:\UEProjects\Aura-clean\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\Default.rc2.res"
-/OUT:"D:\UEProjects\Aura-clean\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\UnrealEditor-RiderBlueprint-Win64-DebugGame.lib"
+"E:\UnrealEngine5Projects\Aura_Game_Learning_GAS\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\Module.RiderBlueprint.cpp.obj"
+"E:\UnrealEngine5Projects\Aura_Game_Learning_GAS\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\Default.rc2.res"
+/OUT:"E:\UnrealEngine5Projects\Aura_Game_Learning_GAS\Plugins\Developer\RiderLink\Intermediate\Build\Win64\x64\UnrealEditor\DebugGame\RiderBlueprint\UnrealEditor-RiderBlueprint-Win64-DebugGame.lib"

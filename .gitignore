@@ -1,23 +1,13 @@
-# Unreal must-have ignores
+# Unreal Engine must-have ignores
 Binaries/
 DerivedDataCache/
 Intermediate/
 Saved/
-
-# IDE stuff
 .vs/
 .vscode/
 .idea/
-*.sln
-*.VC.db
-*.VC.VC.opendb
-*.sdf
 
-# OS fluff
-.DS_Store
-Thumbs.db
-
-# Build artifacts & temp
+# Build artifacts
 *.log
 *.tlog
 *.aps
@@ -25,23 +15,24 @@ Thumbs.db
 *.cache
 *.obj
 *.pch
-
-# Autosaves, backups
-*_BuiltData.uasset
-*_Backup*/
-Saved/*
-Content/
-*.uasset
-*.umap
-*.wav
-*.mp4
-*.png
-Binaries/
-DerivedDataCache/
-Intermediate/
-Saved/
-.vs/
-.idea/
-*.sln
 *.pdb
 *.exe
+*.sln
+
+# OS fluff
+.DS_Store
+Thumbs.db
+
+# Ignore autosaves and backups
+Saved/Backup/
+Saved/Autosaves/
+*_BuiltData.uasset
+
+# Keep project content & source
+!Content/**
+!Config/**
+!Source/**
+
+# Optional: ignore starter content / megascans if desired
+# Content/StarterContent/**
+# Content/Megascans/**
